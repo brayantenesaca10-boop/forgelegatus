@@ -675,6 +675,132 @@
 
     .footer-cross { color: var(--gold); font-size: 1.1rem; }
 
+    /* ROI VISUAL */
+    .roi-visual {
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .roi-visual-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .roi-compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .roi-col { display: flex; flex-direction: column; gap: 1rem; }
+
+    .roi-col-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .roi-col-before .roi-col-title { color: #888; }
+    .roi-col-after .roi-col-title { color: var(--gold); }
+
+    .roi-bar-wrap { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .roi-bar-bg {
+      height: 8px;
+      background: #222;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .roi-bar {
+      height: 100%;
+      width: 0;
+      border-radius: 4px;
+      transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .roi-bar-waste { background: #444; }
+    .roi-bar-mission { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+
+    .roi-bar-stat {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .roi-col-after .roi-bar-stat { color: var(--gold); }
+
+    .roi-bar-desc {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .roi-cost-box {
+      background: var(--dark-3);
+      border: 1px solid #2a2a2a;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .roi-cost-box-gold { border-color: var(--border); }
+
+    .roi-cost-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .roi-cost-box-gold .roi-cost-label { color: var(--gold); }
+
+    .roi-cost-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .roi-cost-sub { font-size: 0.75rem; color: #555; line-height: 1.5; }
+    .roi-cost-box-gold .roi-cost-sub { color: var(--muted); }
+
+    .roi-arrow-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .roi-arrow {
+      font-size: 1.5rem;
+      color: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .roi-arrow-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      max-width: 60px;
+    }
+
+    .roi-footnote {
+      font-size: 0.72rem;
+      color: #444;
+      margin-top: 1.5rem;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 860px) {
       nav { padding: 1.2rem 1.5rem; }
@@ -684,6 +810,9 @@
       .slideshow { width: 280px; height: 360px; }
       section { padding: 4rem 1.5rem; }
       .problem-grid, .contact-grid { grid-template-columns: 1fr; }
+      .roi-compare { grid-template-columns: 1fr; }
+      .roi-arrow-col { flex-direction: row; }
+      .roi-arrow { transform: rotate(90deg); }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .work-grid { grid-template-columns: 1fr; }
       .discipline-bar { flex-direction: column; }
@@ -796,18 +925,82 @@
     <p class="section-label reveal">The Work</p>
     <h2 class="section-title reveal reveal-delay-1">The Vocation Audit</h2>
     <p class="section-body reveal reveal-delay-2">
-      A focused engagement built for Catholic business leaders who are done letting their company own their time.
+      Not a subscription. Not another software tool. A growth investment: I identify exactly where your company is bleeding time and money, build the AI systems that stop it, and return that value directly to your bottom line and your family.
     </p>
+
     <div class="offer-box">
-      <h3 class="offer-title">What You Get</h3>
+      <h3 class="offer-title">What You Walk Away With</h3>
       <ul class="offer-list">
-        <li>A focused discovery session mapping exactly how your time is spent and where the friction lives</li>
-        <li>A prioritized list of 3 to 5 AI systems that would give you measurable hours back each week</li>
-        <li>A clear picture of what your week looks like once those hours are returned to you</li>
-        <li>A concrete implementation path if you want to move forward</li>
+        <li>
+          <div>
+            <strong style="color:#fff; font-weight:500;">A diagnosis of your time leaks.</strong>
+            <span style="display:block; margin-top:0.2rem;">We map every hour you or your team spends on work that should not require a human. Most CEOs discover they are losing 8 to 15 hours a week to tasks that AI can handle today.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong style="color:#fff; font-weight:500;">A prioritized build list with real ROI numbers.</strong>
+            <span style="display:block; margin-top:0.2rem;">3 to 5 specific AI systems ranked by impact. Each one comes with an estimate: hours recovered per week, annual dollar value freed, and what you do with that time instead.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong style="color:#fff; font-weight:500;">A clear picture of your company after the build.</strong>
+            <span style="display:block; margin-top:0.2rem;">You see exactly what changes. Less desk. More dinner. A company that runs with or without you in the room.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong style="color:#fff; font-weight:500;">A concrete implementation path if you want to move.</strong>
+            <span style="display:block; margin-top:0.2rem;">No pressure. If the numbers make sense, we scope the build together. You keep 80 to 90 percent of the value. I take 10 to 20 percent for making it happen.</span>
+          </div>
+        </li>
       </ul>
+
+      <!-- ROI VISUAL -->
+      <div class="roi-visual">
+        <p class="roi-visual-label">What the numbers look like</p>
+        <div class="roi-compare">
+          <div class="roi-col roi-col-before">
+            <p class="roi-col-title">Today</p>
+            <div class="roi-bar-wrap">
+              <div class="roi-bar-bg">
+                <div class="roi-bar roi-bar-waste" data-width="72"></div>
+              </div>
+              <span class="roi-bar-stat">72% of your week</span>
+            </div>
+            <p class="roi-bar-desc">lost to repetitive tasks, email, manual reporting, and operational noise</p>
+            <div class="roi-cost-box">
+              <span class="roi-cost-label">Annual cost to your company</span>
+              <span class="roi-cost-num">$78,000+</span>
+              <span class="roi-cost-sub">based on a CEO valuing their time at $300/hr losing 5 hrs/week</span>
+            </div>
+          </div>
+          <div class="roi-arrow-col">
+            <div class="roi-arrow">&#8594;</div>
+            <p class="roi-arrow-label">After the Audit</p>
+          </div>
+          <div class="roi-col roi-col-after">
+            <p class="roi-col-title">After</p>
+            <div class="roi-bar-wrap">
+              <div class="roi-bar-bg">
+                <div class="roi-bar roi-bar-mission" data-width="80"></div>
+              </div>
+              <span class="roi-bar-stat">80% on mission</span>
+            </div>
+            <p class="roi-bar-desc">your time on leadership, family, and the work only you can do</p>
+            <div class="roi-cost-box roi-cost-box-gold">
+              <span class="roi-cost-label">Value returned to you</span>
+              <span class="roi-cost-num">$78,000+</span>
+              <span class="roi-cost-sub">you keep 80-90% of the recovered value. This is a growth investment, not an expense.</span>
+            </div>
+          </div>
+        </div>
+        <p class="roi-footnote">Numbers are illustrative and based on Applied AI Society's value framework. Your actual audit produces your specific numbers.</p>
+      </div>
+
       <p class="offer-cta-note">
-        The investment is sized to your situation and scoped around the value it creates for you. <strong>Reach out and we will talk through it.</strong>
+        The investment is sized to what it is actually worth to you — not a flat rate. <strong>Reach out and we will run the numbers together.</strong>
       </p>
     </div>
   </section>
@@ -1039,6 +1232,20 @@
       gridObserver.observe(el);
       el.querySelectorAll(':scope > *').forEach(child => child.classList.add('reveal'));
     });
+
+    // ── ROI BARS — animate when scrolled into view ─────────
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.roi-bar').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.roi-visual').forEach(el => barObserver.observe(el));
 
     // ── CURSOR GLOW (desktop only) ─────────────────────────
     if (window.matchMedia('(pointer: fine)').matches) {
