@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brayan Tenesaca — For Legatus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --dark: #0D0D0D;
+      --dark-2: #141414;
+      --dark-3: #1C1C1C;
+      --border: rgba(201, 168, 76, 0.2);
+      --text: #E8E8E8;
+      --muted: #C0C0C0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes lineGrow {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+      50%       { box-shadow: 0 0 0 8px rgba(201,168,76,0.12); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Hero animates in on load */
+    .hero-eyebrow  { animation: fadeUp 0.7s ease 0.1s both; }
+    .hero-headline { animation: fadeUp 0.7s ease 0.25s both; }
+    .hero-sub      { animation: fadeUp 0.7s ease 0.4s both; }
+    .hero-actions  { animation: fadeUp 0.7s ease 0.55s both; }
+    .hero-photo    { animation: fadeIn 1s ease 0.4s both; }
+
+    /* Gold underline on section titles */
+    .section-title { position: relative; display: inline-block; }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; left: 0;
+      width: 40px; height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease 0.3s;
+    }
+    .visible .section-title::after,
+    .section-title.visible::after { transform: scaleX(1); }
+
+    /* Hover lift on cards */
+    .problem-item {
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .problem-item:hover {
+      transform: translateY(-3px);
+      background: #1a1a1a;
+    }
+
+    .cred-item {
+      transition: transform 0.2s ease;
+    }
+    .cred-item:hover {
+      transform: translateX(4px);
+    }
+
+    .discipline-item {
+      transition: background 0.2s ease;
+    }
+    .discipline-item:hover { background: #1a1a1a; }
+
+    /* Animated gold border on offer box */
+    .offer-box {
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transition: left 0.6s ease;
+    }
+    .offer-box:hover::before { left: 100%; }
+
+    /* CTA button pulse */
+    .btn-primary { animation: pulse 3s ease-in-out infinite; }
+
+    /* Nav link active indicator */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* Backed bar items fade in staggered */
+    .backed-person {
+      opacity: 0;
+      animation: fadeUp 0.5s ease both;
+    }
+    .backed-person:nth-child(1) { animation-delay: 0.6s; }
+    .backed-person:nth-child(2) { animation-delay: 0.75s; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(13, 13, 13, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .nav-right { display: flex; gap: 1rem; align-items: center; }
+
+    .nav-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.4rem;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 8rem 4rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-text { max-width: 520px; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .hero-headline em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* SLIDESHOW */
+    .hero-photo { display: flex; justify-content: flex-end; align-items: center; }
+
+    .slideshow {
+      position: relative;
+      width: 360px;
+      height: 460px;
+    }
+
+    .slideshow::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px; right: -16px; bottom: -16px;
+      border: 1px solid var(--border);
+      z-index: 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%);
+    }
+
+    .slide-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-placeholder span {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #444;
+    }
+
+    .slide-dots {
+      position: absolute;
+      bottom: -2rem;
+      left: 0;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #333;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dot.active { background: var(--gold); }
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-secondary {
+      display: inline-block;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* BACKED BAR */
+    .backed-bar {
+      background: var(--dark-3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.8rem 4rem;
+    }
+
+    .backed-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .backed-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #555;
+      white-space: nowrap;
+    }
+
+    .backed-people { display: flex; gap: 3rem; flex-wrap: wrap; }
+
+    .backed-person { display: flex; flex-direction: column; }
+    .backed-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+    .backed-role { font-size: 0.75rem; color: var(--muted); }
+
+    /* DIVIDER */
+    .divider { width: 100%; height: 1px; background: var(--border); }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-body {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 620px;
+      line-height: 1.9;
+    }
+
+    /* PROBLEM */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 3.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .problem-item { background: var(--dark-2); padding: 2rem; }
+
+    .problem-item-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .problem-item p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+
+    /* OFFER */
+    .offer-box {
+      border: 1px solid var(--border);
+      background: var(--dark-2);
+      padding: 3rem;
+      margin-top: 3rem;
+    }
+
+    .offer-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    .offer-list { list-style: none; margin-bottom: 2rem; }
+
+    .offer-list li {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+    }
+    .offer-list li:last-child { border-bottom: none; }
+
+    .offer-list li::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.6rem;
+    }
+
+    .offer-cta-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      line-height: 1.7;
+    }
+    .offer-cta-note strong { color: var(--gold); font-weight: 500; }
+
+    /* MISSION */
+    .mission-block {
+      padding: 5rem 4rem;
+      background: var(--dark-3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .mission-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: #fff;
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .mission-attribution {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .about-body p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+
+    .cred-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .cred-item {
+      border-left: 2px solid var(--gold);
+      padding: 0 0 0 1.5rem;
+    }
+
+    .cred-name { font-size: 0.9rem; font-weight: 500; color: #fff; margin-bottom: 0.25rem; }
+    .cred-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* DISCIPLINE */
+    .discipline-bar {
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .discipline-item {
+      background: var(--dark-2);
+      padding: 1.5rem 2rem;
+      flex: 1;
+    }
+
+    .discipline-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .discipline-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .discipline-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* WORK SAMPLES */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .work-item {
+      background: var(--dark-2);
+      text-decoration: none;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .work-item:hover { background: var(--dark-3); }
+
+    .work-preview {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      background: var(--dark-3);
+    }
+
+    .work-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .work-item:hover .work-preview img { transform: scale(1.03); }
+
+    .work-preview-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .work-preview-fallback span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #444;
+    }
+
+    .work-item-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+
+    .work-item-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .work-item-title { font-size: 0.95rem; color: #fff; margin-bottom: 0.4rem; }
+    .work-item-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; flex: 1; }
+
+    .work-arrow {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .contact-item { background: var(--dark-2); padding: 2rem; }
+
+    .contact-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-value { font-size: 0.95rem; color: #fff; text-decoration: none; }
+    .contact-value:hover { color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-cross { color: var(--gold); font-size: 1.1rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-link { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; gap: 3rem; }
+      .hero-photo { justify-content: flex-start; }
+      .slideshow { width: 280px; height: 360px; }
+      section { padding: 4rem 1.5rem; }
+      .problem-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .work-grid { grid-template-columns: 1fr; }
+      .discipline-bar { flex-direction: column; }
+      .mission-block { padding: 3.5rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+      .offer-box { padding: 2rem 1.5rem; }
+      .backed-bar { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">Brayan Tenesaca</span>
+    <div class="nav-right">
+      <a href="https://www.linkedin.com/in/brayan-tenesaca-1843351a5/" target="_blank" class="nav-link">LinkedIn</a>
+      <a href="#contact" class="nav-cta">Get in Touch</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">AI Consultant for Catholic Business Leaders</p>
+      <h1 class="hero-headline">
+        Your company<br />
+        should not cost you<br />
+        <em>your family.</em>
+      </h1>
+      <p class="hero-sub">
+        I help Catholic CEOs and founders identify exactly where AI can give them their time back, so they can be present for their families, their faith, and their mission.
+      </p>
+      <div class="hero-actions">
+        <a href="#offer" class="btn-primary">See the Work</a>
+        <a href="#contact" class="btn-secondary">Reach Out</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="slideshow">
+        <!--
+          HOW TO ADD YOUR PHOTOS:
+          1. Put your image files inside the /images/ folder next to this index.html
+          2. Replace each placeholder div with: <img src="images/your-photo.jpg" alt="Brayan Tenesaca" />
+          3. Add more .slide divs to add more photos to the rotation
+        -->
+        <div class="slide active"><img src="images/DSC_2058.jpg" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0748.JPG" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0659.jpeg" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0662.jpeg" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0664.jpeg" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0665.jpeg" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0667.jpeg" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0674.jpeg" alt="Brayan Tenesaca" /></div>
+        <div class="slide"><img src="images/IMG_0678.jpeg" alt="Brayan Tenesaca" /></div>
+        <div class="slide-dots" id="dots"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKED BY -->
+  <div class="backed-bar">
+    <div class="backed-inner">
+      <span class="backed-label">Backed by</span>
+      <div class="backed-people">
+        <div class="backed-person">
+          <span class="backed-name">Gary Sheng</span>
+          <span class="backed-role">Applied AI Society, Forbes 30 Under 30, ex-Google</span>
+        </div>
+        <div class="backed-person">
+          <span class="backed-name">Chauncey St. John</span>
+          <span class="backed-role">Hallow, Co-founder Better Giving</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <p class="section-label reveal">The Problem</p>
+    <h2 class="section-title reveal reveal-delay-1">You are serious about your vocation.<br />Your calendar does not reflect it.</h2>
+    <p class="section-body reveal reveal-delay-2">
+      Catholic business leaders face a contradiction most will not say out loud. They built their companies to provide for their families, but the companies are now stealing the hours that belong to those same families.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <p class="problem-item-label">The Symptom</p>
+        <p>Hours lost every week to repetitive tasks, scattered systems, and operational noise that could be automated.</p>
+      </div>
+      <div class="problem-item">
+        <p class="problem-item-label">The Cost</p>
+        <p>You are at your desk when you should be at dinner. On your phone when your children are in the room. Present in the office and absent at home.</p>
+      </div>
+      <div class="problem-item">
+        <p class="problem-item-label">The Lie</p>
+        <p>That this is just the price of running a company. That it will ease up when things settle down.</p>
+      </div>
+      <div class="problem-item">
+        <p class="problem-item-label">The Truth</p>
+        <p>It is a systems problem. The work that is stealing your time can be identified, mapped, and eliminated. Most of it this year.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- OFFER -->
+  <section id="offer">
+    <p class="section-label reveal">The Work</p>
+    <h2 class="section-title reveal reveal-delay-1">The Vocation Audit</h2>
+    <p class="section-body reveal reveal-delay-2">
+      A focused engagement built for Catholic business leaders who are done letting their company own their time.
+    </p>
+    <div class="offer-box">
+      <h3 class="offer-title">What You Get</h3>
+      <ul class="offer-list">
+        <li>A focused discovery session mapping exactly how your time is spent and where the friction lives</li>
+        <li>A prioritized list of 3 to 5 AI systems that would give you measurable hours back each week</li>
+        <li>A clear picture of what your week looks like once those hours are returned to you</li>
+        <li>A concrete implementation path if you want to move forward</li>
+      </ul>
+      <p class="offer-cta-note">
+        The investment is sized to your situation and scoped around the value it creates for you. <strong>Reach out and we will talk through it.</strong>
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MISSION QUOTE -->
+  <div class="mission-block">
+    <p class="mission-quote">
+      "I walked away from a working business because the technology was pulling me away from what mattered. I use my skills to protect the Domestic Church. The men I am called to serve are Catholic fathers who are serious about their vocation and refuse to let their company cost them their family."
+    </p>
+    <p class="mission-attribution">Brayan Tenesaca</p>
+  </div>
+
+  <!-- WHO I AM -->
+  <section id="about">
+    <p class="section-label reveal">Who I Am</p>
+    <h2 class="section-title reveal reveal-delay-1">18 years old.<br />Catholic. Called to this.</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>
+          I am a freshman at Babson College, concentrating in Technology Entrepreneurship, and co-founder of Next Generation Learners. I have built and launched AI programs from concept to execution in under three weeks, partnering with libraries across Connecticut to bring real AI capability to communities.
+        </p>
+        <p>
+          I started this work after proving a business model worked, then walking away from it. The technology was building credibility but not serving God. My mission is to protect the Domestic Church. I use AI to go to war for Catholic fathers and CEOs: men who are drowning in digital noise when they should be with their wives and children.
+        </p>
+        <p>
+          I am not interested in building technology for its own sake. Every system I build has one measure of success: did it give a Catholic father more time for the people God entrusted to him.
+        </p>
+        <p>
+          I believe discipline is the foundation of everything. I train MMA, box, lift, and run. Physical and spiritual discipline are not separate practices. They reinforce each other. A man who cannot govern himself cannot serve others well.
+        </p>
+      </div>
+      <div class="cred-stack">
+        <div class="cred-item">
+          <p class="cred-name">Gary Sheng</p>
+          <p class="cred-desc">Co-founder, Applied AI Society. Forbes 30 Under 30. Ex-Google engineer.</p>
+        </div>
+        <div class="cred-item">
+          <p class="cred-name">Chauncey St. John</p>
+          <p class="cred-desc">Fundraising Development Lead, Hallow. Co-founder, Better Giving.</p>
+        </div>
+        <div class="cred-item">
+          <p class="cred-name">Babson College</p>
+          <p class="cred-desc">Ranked #1 for entrepreneurship in the United States. Concentrating in Technology Entrepreneurship.</p>
+        </div>
+        <div class="cred-item">
+          <p class="cred-name">Next Generation Learners</p>
+          <p class="cred-desc">3 active library partnerships in Connecticut. First program launched in 3 weeks for $240.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="discipline-bar">
+      <div class="discipline-item">
+        <p class="discipline-label">MMA + Boxing</p>
+        <p class="discipline-desc">Trains martial arts as a practice of discipline, not competition.</p>
+      </div>
+      <div class="discipline-item">
+        <p class="discipline-label">Strength + Conditioning</p>
+        <p class="discipline-desc">Lifts and runs consistently. The body is a tool for the mission.</p>
+      </div>
+      <div class="discipline-item">
+        <p class="discipline-label">Spiritual Practice</p>
+        <p class="discipline-desc">Daily Mass, prayer, and sacramental life. Faith is the foundation.</p>
+      </div>
+      <div class="discipline-item">
+        <p class="discipline-label">Catholic Identity</p>
+        <p class="discipline-desc">Bridgeport Diocese. Called to serve the Domestic Church.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STUDENT WORK -->
+  <section id="work">
+    <p class="section-label reveal">Student Work</p>
+    <h2 class="section-title reveal reveal-delay-1">What the programs produce.</h2>
+    <p class="section-body reveal reveal-delay-2">
+      Real projects built by real students in the NGL programs. These were not templates. These were people who had never built with AI, given the tools and the belief that they could.
+    </p>
+    <div class="work-grid">
+      <a href="https://smartbowl-prize-pal.lovable.app/" target="_blank" class="work-item">
+        <div class="work-preview">
+          <img
+            src="https://api.microlink.io/?url=https://smartbowl-prize-pal.lovable.app/&screenshot=true&meta=false&embed=screenshot.url"
+            alt="SmartBowl Prize Pal preview"
+            onerror="this.parentElement.innerHTML='<div class=\'work-preview-fallback\'><span>SmartBowl</span></div>'"
+          />
+        </div>
+        <div class="work-item-body">
+          <p class="work-item-label">Student Project 01</p>
+          <p class="work-item-title">SmartBowl Prize Pal</p>
+          <p class="work-item-desc">The first bowling ball that talks back. SmartBowl teaches you the perfect hook, tracks your progress, and buys you real prizes. Built by a student who connected her love of bowling to her first AI product. She had never used AI before.</p>
+          <span class="work-arrow">View Project &rarr;</span>
+        </div>
+      </a>
+      <a href="https://jump-love-loop.lovable.app/" target="_blank" class="work-item">
+        <div class="work-preview">
+          <img
+            src="https://api.microlink.io/?url=https://jump-love-loop.lovable.app/&screenshot=true&meta=false&embed=screenshot.url"
+            alt="Jump Love Loop preview"
+            onerror="this.parentElement.innerHTML='<div class=\'work-preview-fallback\'><span>Jump Love Loop</span></div>'"
+          />
+        </div>
+        <div class="work-item-body">
+          <p class="work-item-label">Student Project 02</p>
+          <p class="work-item-title">Jump Love Loop</p>
+          <p class="work-item-desc">The smart jump rope that counts your jumps, tracks your high score, and gets harder as you get better. Built by a student who loves jump rope. After building it, she ran to her mom asking if they could make it real.</p>
+          <span class="work-arrow">View Project &rarr;</span>
+        </div>
+      </a>
+      <a href="https://coad-art-buddy.lovable.app/" target="_blank" class="work-item">
+        <div class="work-preview">
+          <img
+            src="https://api.microlink.io/?url=https://coad-art-buddy.lovable.app/&screenshot=true&meta=false&embed=screenshot.url"
+            alt="COAD.ART preview"
+            onerror="this.parentElement.innerHTML='<div class=\'work-preview-fallback\'><span>COAD.ART</span></div>'"
+          />
+        </div>
+        <div class="work-item-body">
+          <p class="work-item-label">Student Project 03</p>
+          <p class="work-item-title">COAD.ART</p>
+          <p class="work-item-desc">A fully functional drawing app you can use right now. Built by a girl who loves art and had never touched AI before the program. She built something real, from nothing, in one session.</p>
+          <span class="work-arrow">View Project &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label reveal">Get in Touch</p>
+    <h2 class="section-title reveal reveal-delay-1">If this resonates,<br />reach out directly.</h2>
+    <p class="section-body reveal reveal-delay-2">
+      I am not running ads. I am not sending newsletters. I am talking to Catholic business leaders one at a time. If someone sent you this page, it is because they thought you and I should speak.
+    </p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <p class="contact-label">Email</p>
+        <a href="mailto:brayan@nextgenerationlearners.com" class="contact-value">brayan@nextgenerationlearners.com</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">Phone</p>
+        <a href="tel:+12034604183" class="contact-value">203-460-4183</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">LinkedIn</p>
+        <a href="https://www.linkedin.com/in/brayan-tenesaca-1843351a5/" target="_blank" class="contact-value">Brayan Tenesaca</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-name">Brayan Tenesaca, For Legatus</span>
+    <span class="footer-cross">&#10011;</span>
+  </footer>
+
+  <script>
+    // ── SLIDESHOW ──────────────────────────────────────────
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dots');
+    let current = 0;
+
+    // Build dots dynamically based on slide count
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(d);
+    });
+
+    const dots = dotsContainer.querySelectorAll('.dot');
+
+    function goToSlide(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    // Auto-advance every 3.5s
+    let timer = setInterval(() => goToSlide(current + 1), 3500);
+
+    // Pause on hover
+    document.querySelector('.slideshow').addEventListener('mouseenter', () => clearInterval(timer));
+    document.querySelector('.slideshow').addEventListener('mouseleave', () => {
+      timer = setInterval(() => goToSlide(current + 1), 3500);
+    });
+
+    // Swipe support for mobile
+    let touchStartX = 0;
+    document.querySelector('.slideshow').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    document.querySelector('.slideshow').addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goToSlide(diff > 0 ? current + 1 : current - 1);
+    });
+
+    // ── SCROLL REVEAL ──────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Stagger children of grids on reveal
+    const gridObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll(':scope > *').forEach((child, i) => {
+            child.style.transitionDelay = `${i * 0.08}s`;
+            child.classList.add('reveal', 'visible');
+          });
+          gridObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.problem-grid, .cred-stack, .discipline-bar, .work-grid, .contact-grid').forEach(el => {
+      gridObserver.observe(el);
+      el.querySelectorAll(':scope > *').forEach(child => child.classList.add('reveal'));
+    });
+
+    // ── CURSOR GLOW (desktop only) ─────────────────────────
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const glow = document.createElement('div');
+      glow.style.cssText = `
+        position: fixed; pointer-events: none; z-index: 9999;
+        width: 300px; height: 300px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+        transform: translate(-50%, -50%);
+        transition: left 0.12s ease, top 0.12s ease;
+        left: -999px; top: -999px;
+      `;
+      document.body.appendChild(glow);
+      document.addEventListener('mousemove', e => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top  = e.clientY + 'px';
+      });
+    }
+
+    // ── ACTIVE NAV ON SCROLL ───────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY + 120;
+      sections.forEach(sec => {
+        if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
+          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        }
+      });
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
