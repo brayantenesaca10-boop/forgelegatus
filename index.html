@@ -18,7 +18,7 @@
       --dark-3: #1C1C1C;
       --border: rgba(201, 168, 76, 0.2);
       --text: #E8E8E8;
-      --muted: #C0C0C0;
+      --muted: #EAEAEA;
     }
 
     html { scroll-behavior: smooth; }
@@ -286,7 +286,7 @@
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #444;
+      color: #999;
     }
 
     .slide-dots {
@@ -356,7 +356,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: #555;
+      color: #aaa;
       white-space: nowrap;
     }
 
@@ -609,7 +609,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #444;
+      color: #999;
     }
 
     .work-item-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
@@ -716,7 +716,7 @@
 
     .contact-primary-sub {
       font-size: 0.8rem;
-      color: #555;
+      color: #aaa;
       padding-left: 0.2rem;
     }
 
@@ -724,7 +724,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: #444;
+      color: #999;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
     }
@@ -803,7 +803,7 @@
 
     .roi-bar-desc {
       font-size: 0.8rem;
-      color: #666;
+      color: #bbb;
       line-height: 1.5;
     }
 
@@ -822,7 +822,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #555;
+      color: #aaa;
     }
 
     .roi-cost-box-gold .roi-cost-label { color: var(--gold); }
@@ -861,7 +861,7 @@
 
     .roi-footnote {
       font-size: 0.72rem;
-      color: #444;
+      color: #999;
       margin-top: 1.5rem;
       font-style: italic;
       line-height: 1.6;
@@ -890,6 +890,51 @@
   </style>
 </head>
 <body>
+
+  <!-- PASSWORD GATE -->
+  <div id="authGate" style="
+    position:fixed;inset:0;z-index:10000;background:#0D0D0D;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+  ">
+    <div style="text-align:center;max-width:360px;padding:2rem;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:#fff;margin-bottom:0.5rem;">Forge Legatus</p>
+      <p style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;">Private Access</p>
+      <input type="password" id="authPass" placeholder="Enter password" autocomplete="off" style="
+        width:100%;padding:0.9rem 1.2rem;background:#141414;border:1px solid rgba(201,168,76,0.3);
+        color:#fff;font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;
+        margin-bottom:1rem;text-align:center;letter-spacing:0.1em;
+      " onkeydown="if(event.key==='Enter')checkAuth()" />
+      <button onclick="checkAuth()" style="
+        width:100%;padding:0.9rem;background:var(--gold);color:#0D0D0D;border:none;
+        font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:500;
+        letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;
+      ">Enter</button>
+      <p id="authError" style="color:#EF5350;font-size:0.8rem;margin-top:1rem;display:none;">Incorrect password.</p>
+    </div>
+  </div>
+  <script>
+    // SHA-256 hash of the password (so plaintext isn't in source)
+    const AUTH_HASH = 'c4883d48298ba953610aa229489a5fbfc2511029bc72b08fbf87088625885f86'; // change via hash
+    async function sha256(msg) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+    async function checkAuth() {
+      const pass = document.getElementById('authPass').value;
+      const hash = await sha256(pass);
+      if (hash === AUTH_HASH || sessionStorage.getItem('forge_auth') === 'true') {
+        sessionStorage.setItem('forge_auth', 'true');
+        document.getElementById('authGate').style.display = 'none';
+      } else {
+        document.getElementById('authError').style.display = 'block';
+        document.getElementById('authPass').value = '';
+      }
+    }
+    // Auto-unlock if already authenticated in this session
+    if (sessionStorage.getItem('forge_auth') === 'true') {
+      document.getElementById('authGate').style.display = 'none';
+    }
+  </script>
 
   <nav>
     <span class="nav-logo">Brayan Tenesaca</span>
@@ -1083,6 +1128,31 @@
     </p>
     <p class="mission-attribution">Brayan Tenesaca</p>
   </div>
+
+  <!-- WHY I DO THIS -->
+  <section id="calling">
+    <p class="section-label reveal">The Calling</p>
+    <h2 class="section-title reveal reveal-delay-1">I grew up without a father.<br />That is why I do this.</h2>
+    <div class="about-body">
+      <p class="reveal reveal-delay-2">
+        I know what it feels like when a father is not present. I lived it. I grew up without mine. That absence shaped everything about who I am and what I am building.
+      </p>
+      <p class="reveal reveal-delay-2">
+        One of my biggest ambitions in life is to become a father. Not in the distant future. It is the thing I am orienting my entire life around. Learning to love well. Learning to lead well. Learning to be the man my future family will need me to be.
+      </p>
+      <p class="reveal reveal-delay-2">
+        I had a business that was working. Next Generation Learners was growing, earning, building credibility. But it was consuming me. I was putting God aside. And when I do that, it weighs on me heavily and eventually comes crashing down. So I walked away. Not because the work was bad. Because it was pulling me from what matters most.
+      </p>
+      <p class="reveal reveal-delay-2">
+        That is why I serve Catholic fathers. I see men who love their families, who take their vocation seriously, but who are falling into the same trap: getting so lost in their work that they are absent from the people God gave them. They built their companies to provide for their families. But now the company is taking them away from those same families.
+      </p>
+      <p class="reveal reveal-delay-2" style="color:#fff; font-weight:500;">
+        I refuse to let that happen. Not on my watch. I use every skill God gave me to go to war for the Domestic Church. Every system I build, every hour I recover for a Catholic father, is one more hour he gets to be with his wife and children. That is the only metric that matters.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
 
   <!-- WHO I AM -->
   <section id="about">
