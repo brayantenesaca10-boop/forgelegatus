@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGL Teacher AI Toolkit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563EB;
+      --blue-light: #3B82F6;
+      --blue-bg: #EFF6FF;
+      --dark: #0F172A;
+      --gray-900: #1E293B;
+      --gray-700: #334155;
+      --gray-500: #64748B;
+      --gray-300: #CBD5E1;
+      --gray-100: #F1F5F9;
+      --white: #FFFFFF;
+      --green: #10B981;
+      --green-bg: #ECFDF5;
+      --orange: #F59E0B;
+      --orange-bg: #FFFBEB;
+      --purple: #8B5CF6;
+      --purple-bg: #F5F3FF;
+      --red: #EF4444;
+      --red-bg: #FEF2F2;
+      --teal: #14B8A6;
+      --teal-bg: #F0FDFA;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--gray-100);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--gray-900) 100%);
+      color: var(--white);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #93C5FD;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 span { color: var(--blue-light); }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--gray-300);
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue);
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .hero-cta:hover { background: var(--blue-light); }
+
+    /* ── Section ── */
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    .section-sub {
+      color: var(--gray-500);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* ── Principle bar ── */
+    .principle-bar {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-left: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .principle-bar .num {
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .principle-bar strong { display: block; margin-bottom: 2px; }
+    .principle-bar p { font-size: 0.9rem; color: var(--gray-700); }
+
+    /* ── Driver Cards ── */
+    .driver-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    .driver-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--gray-300);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .driver-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    .driver-header {
+      padding: 1.25rem 1.5rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .driver-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .driver-header h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .driver-header .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .driver-desc {
+      padding: 0 1.5rem 1rem;
+      font-size: 0.9rem;
+      color: var(--gray-700);
+    }
+    .driver-prompt-wrap {
+      border-top: 1px solid var(--gray-100);
+      background: var(--gray-100);
+      padding: 1rem 1.5rem;
+    }
+    .driver-prompt-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-500);
+      margin-bottom: 0.5rem;
+    }
+    .driver-prompt {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--gray-900);
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .driver-prompt:hover { border-color: var(--blue); }
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      background: var(--dark);
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.75rem;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: var(--gray-700); }
+    .copy-btn.copied { background: var(--green); }
+
+    /* ── How to use ── */
+    .how-to {
+      background: var(--blue-bg);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .how-to h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--blue); }
+    .how-to ol { padding-left: 1.25rem; }
+    .how-to li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--gray-700); }
+    .how-to li strong { color: var(--dark); }
+
+    /* ── Color themes per driver ── */
+    .theme-blue .driver-icon { background: var(--blue-bg); color: var(--blue); }
+    .theme-blue .tag { background: var(--blue-bg); color: var(--blue); }
+    .theme-green .driver-icon { background: var(--green-bg); color: var(--green); }
+    .theme-green .tag { background: var(--green-bg); color: var(--green); }
+    .theme-purple .driver-icon { background: var(--purple-bg); color: var(--purple); }
+    .theme-purple .tag { background: var(--purple-bg); color: var(--purple); }
+    .theme-orange .driver-icon { background: var(--orange-bg); color: var(--orange); }
+    .theme-orange .tag { background: var(--orange-bg); color: var(--orange); }
+    .theme-red .driver-icon { background: var(--red-bg); color: var(--red); }
+    .theme-red .tag { background: var(--red-bg); color: var(--red); }
+    .theme-teal .driver-icon { background: var(--teal-bg); color: var(--teal); }
+    .theme-teal .tag { background: var(--teal-bg); color: var(--teal); }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      color: var(--gray-500);
+      font-size: 0.85rem;
+    }
+    .footer a { color: var(--blue); text-decoration: none; }
+    .footer-logo { font-weight: 700; font-size: 1.1rem; color: var(--dark); margin-bottom: 0.25rem; }
+
+    @media (min-width: 640px) {
+      .hero { padding: 4rem 2rem 3rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .section { padding: 2.5rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Woodstock PD Day - April 3, 2026</div>
+    <h1>Your <span>AI Teaching Toolkit</span></h1>
+    <p>6 ready-to-use AI prompts you can paste into ChatGPT today. Each one is designed to make AI your thinking partner, not a replacement.</p>
+    <a href="#drivers" class="hero-cta">Get the Drivers</a>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="how-to">
+      <h3>How to Use These Drivers</h3>
+      <ol>
+        <li>Open <strong>ChatGPT</strong> (free version works fine) at <strong>chat.openai.com</strong></li>
+        <li><strong>Copy</strong> any driver below using the copy button</li>
+        <li><strong>Paste</strong> it into ChatGPT and press enter</li>
+        <li><strong>Answer AI's questions</strong> — it will ask about YOUR students, YOUR subject, YOUR goals</li>
+        <li><strong>You stay in control.</strong> AI gives you a draft. You decide what to keep, change, or toss.</li>
+      </ol>
+    </div>
+
+    <h2 class="section-title">The Partner Mindset</h2>
+    <p class="section-sub">Every driver follows the same principle: your thinking comes first, AI supports second.</p>
+
+    <div class="principle-bar">
+      <div class="num">1</div>
+      <div><strong>Think First</strong><p>You know your students. AI doesn't. Every driver starts by asking YOU questions.</p></div>
+    </div>
+    <div class="principle-bar">
+      <div class="num">2</div>
+      <div><strong>AI as Partner, Not Employee</strong><p>"Help me think" beats "do this for me." Partners ask questions. Employees just execute.</p></div>
+    </div>
+    <div class="principle-bar">
+      <div class="num">3</div>
+      <div><strong>You Are the Decision-Maker</strong><p>AI produces drafts. You produce decisions. Nothing goes to your students without your judgment.</p></div>
+    </div>
+  </div>
+
+  <!-- DRIVERS -->
+  <div class="section" id="drivers">
+    <h2 class="section-title">The Drivers</h2>
+    <p class="section-sub">Copy, paste, and use. Each one saves you real time on real work.</p>
+
+    <div class="driver-grid">
+
+      <!-- Driver 1: Lesson Plan Partner -->
+      <div class="driver-card theme-blue">
+        <div class="driver-header">
+          <div class="driver-icon">&#128218;</div>
+          <div>
+            <h3>Lesson Plan Partner</h3>
+            <span class="tag">Planning</span>
+          </div>
+        </div>
+        <p class="driver-desc">Generates a personalized lesson plan — but only after it learns about your students, your standards, and your constraints. No generic templates.</p>
+        <div class="driver-prompt-wrap">
+          <div class="driver-prompt-label">Copy this prompt into ChatGPT</div>
+          <div class="driver-prompt" id="prompt-1">You are my lesson planning partner. Before you create anything, you need to understand my classroom.
+
+Ask me these questions one at a time. Wait for my answer before moving to the next:
+
+1. What subject and grade level do you teach?
+2. What topic or standard are you covering next?
+3. How long is your class period?
+4. What do your students already know about this topic?
+5. What's one challenge your students typically face with this material?
+6. Do you have any specific requirements (state standards, accommodations, materials available)?
+
+After I answer all questions, create a lesson plan that includes:
+- A clear learning objective
+- An engaging opener (first 5 minutes)
+- Main instruction with at least one student-active component
+- A formative check for understanding
+- A closing reflection or exit ticket
+
+Keep the language clear and practical. This should feel like a plan I can actually teach tomorrow, not a theoretical framework.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-1', this)">Copy Driver</button>
+        </div>
+      </div>
+
+      <!-- Driver 2: Differentiation Engine -->
+      <div class="driver-card theme-green">
+        <div class="driver-header">
+          <div class="driver-icon">&#127919;</div>
+          <div>
+            <h3>Differentiation Engine</h3>
+            <span class="tag">Equity & Access</span>
+          </div>
+        </div>
+        <p class="driver-desc">Takes any lesson or activity and adapts it for different learners: ELL students, advanced learners, students with IEPs, or anyone who needs a different entry point. Same high expectations, different pathways.</p>
+        <div class="driver-prompt-wrap">
+          <div class="driver-prompt-label">Copy this prompt into ChatGPT</div>
+          <div class="driver-prompt" id="prompt-2">You are a differentiation specialist. I'm going to share a lesson, activity, or assignment with you.
+
+Your job is to help me create adapted versions for different learners while keeping the thinking demands high. Do not water down the content.
+
+First, ask me:
+1. What is the lesson or activity? (I'll paste or describe it)
+2. Which student profiles do you want me to adapt for? (Examples: English Language Learners, students who finish early and need extension, students with reading difficulties, students who need more scaffolding)
+
+Then for each profile I select, create an adapted version that:
+- Maintains the same learning goal
+- Adjusts the language, structure, or entry point (not the rigor)
+- Includes one specific teacher move or support strategy
+- Explains in one sentence what you changed and why
+
+Format each adaptation clearly with the student profile as the header.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-2', this)">Copy Driver</button>
+        </div>
+      </div>
+
+      <!-- Driver 3: Feedback Writer -->
+      <div class="driver-card theme-purple">
+        <div class="driver-header">
+          <div class="driver-icon">&#9997;&#65039;</div>
+          <div>
+            <h3>Student Feedback Writer</h3>
+            <span class="tag">Assessment</span>
+          </div>
+        </div>
+        <p class="driver-desc">Drafts specific, encouraging, actionable feedback on student work. Focused on growth, not grades. You review and personalize before it reaches the student.</p>
+        <div class="driver-prompt-wrap">
+          <div class="driver-prompt-label">Copy this prompt into ChatGPT</div>
+          <div class="driver-prompt" id="prompt-3">You are a feedback drafting partner for a teacher. I will share a piece of student work with you.
+
+Before giving feedback, ask me:
+1. What grade level is the student?
+2. What was the assignment or prompt?
+3. What skill or standard were you assessing?
+4. Is there anything specific about this student I should know? (optional)
+
+Then draft feedback that follows these rules:
+- Lead with something specific the student did well (not generic praise, point to an exact moment in their work)
+- Identify ONE area for growth (not five things, just one clear next step)
+- Frame the growth area as a question or invitation, not a correction (e.g., "What if you tried..." or "I'm curious what would happen if...")
+- Keep it under 100 words
+- Sound like a real teacher who knows this student, not a robot
+
+Do NOT rewrite the student's work. The goal is to help them think, not to do the thinking for them.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-3', this)">Copy Driver</button>
+        </div>
+      </div>
+
+      <!-- Driver 4: Explanation Tester -->
+      <div class="driver-card theme-orange">
+        <div class="driver-header">
+          <div class="driver-icon">&#129504;</div>
+          <div>
+            <h3>Explanation Pressure-Tester</h3>
+            <span class="tag">Instruction</span>
+          </div>
+        </div>
+        <p class="driver-desc">AI acts as a student at your grade level who is confused about the topic you're teaching. Practice your explanation and find the gaps before class, not during it.</p>
+        <div class="driver-prompt-wrap">
+          <div class="driver-prompt-label">Copy this prompt into ChatGPT</div>
+          <div class="driver-prompt" id="prompt-4">You are going to pretend to be a student in my class. Your job is to help me practice explaining a concept before I teach it.
+
+First ask me:
+1. What grade level are your students?
+2. What concept are you about to teach?
+
+Then act as a student at that grade level who:
+- Has heard of the topic but doesn't really understand it
+- Asks genuine questions a real student would ask
+- Gets confused at the parts that typically confuse real students
+- Sometimes says "I think I get it" and then reveals a misconception
+
+When I explain, respond as that student would. If my explanation is unclear, tell me what part confused you. If I use jargon, ask what it means. If I skip a step, point out the gap.
+
+After 3-4 exchanges, break character and give me honest teacher-to-teacher feedback:
+- What part of my explanation was strongest
+- Where a real student would likely get lost
+- One suggestion to make it clearer
+
+Be honest. The whole point is to find the weak spots now.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-4', this)">Copy Driver</button>
+        </div>
+      </div>
+
+      <!-- Driver 5: Parent Communication -->
+      <div class="driver-card theme-teal">
+        <div class="driver-header">
+          <div class="driver-icon">&#128231;</div>
+          <div>
+            <h3>Parent Email Partner</h3>
+            <span class="tag">Communication</span>
+          </div>
+        </div>
+        <p class="driver-desc">Helps you draft parent emails that are clear, professional, and empathetic. Whether it's a concern, an update, or a celebration, it gets the tone right so you can send with confidence.</p>
+        <div class="driver-prompt-wrap">
+          <div class="driver-prompt-label">Copy this prompt into ChatGPT</div>
+          <div class="driver-prompt" id="prompt-5">You are a communication partner for a teacher drafting a parent email.
+
+Before writing anything, ask me:
+1. What is the purpose of this email? (concern about a student, positive update, event announcement, requesting a meeting, responding to a parent concern)
+2. What grade level and subject do you teach?
+3. What specific information needs to be communicated?
+4. What tone are you going for? (warm and encouraging, professional and direct, sensitive and careful)
+5. Is there any context I should know? (prior conversations, student situation, time sensitivity)
+
+Then draft an email that:
+- Opens with something positive or appreciative (even in difficult conversations)
+- States the key message clearly in 2-3 sentences
+- Offers a specific next step or invitation (not vague "let me know")
+- Closes warmly
+- Stays under 150 words (parents skim, just like students)
+
+Give me the draft, then ask: "Anything you'd like me to adjust before you send it?"</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-5', this)">Copy Driver</button>
+        </div>
+      </div>
+
+      <!-- Driver 6: Weekly Prep Kickstart -->
+      <div class="driver-card theme-red">
+        <div class="driver-header">
+          <div class="driver-icon">&#128640;</div>
+          <div>
+            <h3>Weekly Prep Kickstart</h3>
+            <span class="tag">Productivity</span>
+          </div>
+        </div>
+        <p class="driver-desc">Start your week with a 10-minute AI conversation that maps out your priorities, flags potential issues, and gives you a clear plan. Like a thinking partner who helps you see the week before it happens.</p>
+        <div class="driver-prompt-wrap">
+          <div class="driver-prompt-label">Copy this prompt into ChatGPT</div>
+          <div class="driver-prompt" id="prompt-6">You are a weekly planning partner for a teacher. Help me think through my week so I walk in Monday morning with clarity.
+
+Ask me these questions one at a time:
+1. What subject(s) and grade(s) do you teach?
+2. What are you teaching this week? (topics, units, or standards)
+3. What went well last week that you want to build on?
+4. What didn't work or felt rushed last week?
+5. Are there any events, assessments, or deadlines this week I should plan around?
+6. What's the one thing that would make this week feel successful?
+
+After I answer, give me:
+- A priority list for the week (max 3 things)
+- One thing I should prep in advance to avoid stress
+- One idea to re-use or simplify something from last week
+- A suggested daily focus (one sentence per day, Mon-Fri)
+
+Keep it practical and short. This should feel like a helpful 10-minute conversation, not a 40-page planning doc.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-6', this)">Copy Driver</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">Next Generation Learners</div>
+    <p>Built by Brayan Tenesaca | Babson College</p>
+    <p style="margin-top: 0.5rem;">Questions? <a href="mailto:brayan@nextgenerationlearners.com">brayan@nextgenerationlearners.com</a></p>
+    <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray-500);">Remember: AI is your partner, not your employee. Think first. Always.</p>
+  </div>
+
+  <script>
+    function copyPrompt(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy Driver';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
