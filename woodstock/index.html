@@ -336,7 +336,13 @@
       .proof-bar { gap: 32px; }
       .framework-grid { grid-template-columns: 1fr; }
       .result-grid { grid-template-columns: 1fr; }
+      .partner-grid { grid-template-columns: 1fr 1fr !important; }
+      .gallery-grid { grid-template-columns: 1fr 1fr !important; }
+      .gallery-grid > div:first-child { grid-column: span 2; grid-row: span 1 !important; }
       nav .inner { flex-direction: column; gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .partner-grid { grid-template-columns: 1fr !important; }
     }
 
     /* ── Animations ── */
@@ -381,6 +387,52 @@
     <div class="proof-item"><div class="proof-num">4</div><div class="proof-label">Session Curriculum</div></div>
     <div class="proof-item"><div class="proof-num">50+</div><div class="proof-label">Students Trained</div></div>
     <div class="proof-item"><div class="proof-num">K&ndash;8</div><div class="proof-label">Grade Range</div></div>
+  </div>
+</div>
+
+<!-- CREDIBILITY / PARTNERSHIPS -->
+<div class="section" id="credibility" style="padding-top:60px">
+  <div class="container">
+    <div class="sh-label">Where We Work</div>
+    <h2 class="sh-title">Trusted By Schools and Libraries Across Connecticut</h2>
+    <p class="sh-desc">Next Generation Learners partners with public libraries, school districts, and institutions to bring AI literacy to students and educators.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:48px" class="fade-up partner-grid">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center">
+        <div style="font-size:0.95rem;font-weight:600;margin-bottom:4px">Danbury Library</div>
+        <div style="font-size:0.72rem;color:var(--text-3);letter-spacing:0.04em">Pilot Program</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center">
+        <div style="font-size:0.95rem;font-weight:600;margin-bottom:4px">Ridgefield Library</div>
+        <div style="font-size:0.72rem;color:var(--text-3);letter-spacing:0.04em">Spring Program</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center">
+        <div style="font-size:0.95rem;font-weight:600;margin-bottom:4px">Easton Public Library</div>
+        <div style="font-size:0.72rem;color:var(--text-3);letter-spacing:0.04em">AI Literacy Program</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center">
+        <div style="font-size:0.95rem;font-weight:600;margin-bottom:4px">Woodstock Public Schools</div>
+        <div style="font-size:0.72rem;color:var(--text-3);letter-spacing:0.04em">Professional Development</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center">
+        <div style="font-size:0.95rem;font-weight:600;margin-bottom:4px">Wooster School</div>
+        <div style="font-size:0.72rem;color:var(--text-3);letter-spacing:0.04em">Student &amp; Faculty Sessions</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center">
+        <div style="font-size:0.95rem;font-weight:600;margin-bottom:4px">Babson College</div>
+        <div style="font-size:0.72rem;color:var(--text-3);letter-spacing:0.04em">Founder &amp; Student</div>
+      </div>
+    </div>
+
+    <!-- Photo gallery -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;border-radius:var(--radius-lg);overflow:hidden" class="fade-up gallery-grid">
+      <div style="grid-column:span 2;grid-row:span 2"><img src="images/IMG_0674.jpeg" alt="Brayan teaching AI literacy to students in classroom" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" /></div>
+      <div><img src="images/IMG_0664.jpeg" alt="AI literacy classroom session" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" /></div>
+      <div><img src="images/IMG_0665.jpeg" alt="Student engagement during AI lesson" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" /></div>
+      <div><img src="images/IMG_0662.jpeg" alt="One-on-one AI instruction with student" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" /></div>
+      <div><img src="images/IMG_0748.JPG" alt="NGL team with students after program" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" /></div>
+    </div>
+    <p style="font-size:0.72rem;color:var(--text-3);text-align:center;margin-top:12px;font-style:italic">From NGL's AI literacy programs at Danbury Library and Wooster School</p>
   </div>
 </div>
 
