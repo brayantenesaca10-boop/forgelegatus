@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Value Assessment — Next Generation Learners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@0,400;0,600;0,700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0A0A0A;--surface:#111;--surface-2:#171717;--border:#2A2A2A;--border-2:#333;
+      --text:#F5F5F5;--text-2:#B0B0B0;--text-3:#777;
+      --accent:#C9A84C;--accent-bg:rgba(201,168,76,0.08);--accent-bg2:rgba(201,168,76,0.15);
+      --green:#34D399;--green-bg:rgba(52,211,153,0.08);
+      --blue:#60A5FA;--blue-bg:rgba(96,165,250,0.06);
+      --radius:8px;--radius-lg:16px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding:24px}
+    .container{max-width:720px;margin:0 auto}
+    .serif{font-family:'Playfair Display',Georgia,serif}
+
+    /* Header */
+    .header{text-align:center;padding:48px 0 40px;border-bottom:1px solid var(--border);margin-bottom:40px}
+    .header .badge{display:inline-block;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(201,168,76,0.3);padding:5px 14px;border-radius:100px;margin-bottom:20px}
+    .header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;margin-bottom:12px}
+    .header p{font-size:0.92rem;color:var(--text-2);max-width:500px;margin:0 auto}
+
+    /* Sections */
+    .section{margin-bottom:48px}
+    .section-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:600}
+    .section h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;margin-bottom:6px}
+    .section .desc{font-size:0.85rem;color:var(--text-2);margin-bottom:24px}
+
+    /* Task rows */
+    .task-row{display:grid;grid-template-columns:1fr 100px 100px 80px;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+    .task-row.header-row{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);padding:8px 0;border-bottom:1px solid var(--border-2);font-weight:600}
+    .task-name{font-size:0.88rem}
+    .task-name small{display:block;font-size:0.75rem;color:var(--text-3);margin-top:2px}
+    input[type=number]{width:100%;background:var(--surface);border:1px solid var(--border-2);border-radius:6px;color:var(--text);font-family:inherit;font-size:0.88rem;padding:8px 10px;outline:none;text-align:center;transition:border-color 0.2s}
+    input[type=number]:focus{border-color:var(--accent)}
+    .saved-cell{font-size:0.92rem;font-weight:600;color:var(--green);text-align:center}
+
+    /* Summary cards */
+    .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+    .summary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center}
+    .summary-card .label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;font-weight:600}
+    .summary-card .value{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600}
+    .summary-card .sub{font-size:0.78rem;color:var(--text-2);margin-top:4px}
+
+    /* Beyond time */
+    .beyond-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:12px}
+    .beyond-card h4{font-size:0.92rem;font-weight:600;margin-bottom:6px}
+    .beyond-card p{font-size:0.82rem;color:var(--text-2);line-height:1.6}
+    .beyond-card .icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;margin-bottom:12px}
+
+    /* Investment section */
+    .invest-box{background:var(--accent-bg);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:32px;text-align:center;margin-top:32px}
+    .invest-box .pct{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--accent)}
+    .invest-box p{font-size:0.88rem;color:var(--text-2);margin-top:8px;max-width:400px;margin-left:auto;margin-right:auto}
+
+    .footer{text-align:center;padding:40px 0;font-size:0.72rem;color:var(--text-3);border-top:1px solid var(--border);margin-top:48px}
+
+    @media(max-width:640px){
+      .task-row{grid-template-columns:1fr 70px 70px 60px;gap:8px}
+      .summary-grid{grid-template-columns:1fr}
+      .header h1{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="badge">Value Assessment</div>
+    <h1 class="serif">What Is Your Time Worth?</h1>
+    <p>Fill in your current hours. See what your Jarvis gives back — and what those hours become.</p>
+  </div>
+
+  <!-- TASK CALCULATOR -->
+  <div class="section">
+    <div class="section-label">Layer 1: Time Recovered</div>
+    <h2 class="serif">Weekly Admin Tasks</h2>
+    <p class="desc">Estimate how many hours per week you currently spend on each task. AI handles the heavy lifting — you review and approve.</p>
+
+    <div class="task-row header-row">
+      <div>Task</div>
+      <div style="text-align:center">Now (hrs/wk)</div>
+      <div style="text-align:center">With Jarvis</div>
+      <div style="text-align:center">Saved</div>
+    </div>
+
+    <div class="task-row">
+      <div class="task-name">Meeting minutes &amp; action items<small>Transcribe, organize, assign follow-ups</small></div>
+      <input type="number" id="t1-now" value="3" min="0" max="40" step="0.5" oninput="calc()" />
+      <input type="number" id="t1-ai" value="0.5" min="0" max="40" step="0.25" oninput="calc()" />
+      <div class="saved-cell" id="t1-saved">2.5</div>
+    </div>
+
+    <div class="task-row">
+      <div class="task-name">Email responses<small>Reading, drafting, editing, sending</small></div>
+      <input type="number" id="t2-now" value="4" min="0" max="40" step="0.5" oninput="calc()" />
+      <input type="number" id="t2-ai" value="1" min="0" max="40" step="0.25" oninput="calc()" />
+      <div class="saved-cell" id="t2-saved">3</div>
+    </div>
+
+    <div class="task-row">
+      <div class="task-name">Weekly agenda building<small>Pulling open items, structuring priorities</small></div>
+      <input type="number" id="t3-now" value="1.5" min="0" max="40" step="0.5" oninput="calc()" />
+      <input type="number" id="t3-ai" value="0.25" min="0" max="40" step="0.25" oninput="calc()" />
+      <div class="saved-cell" id="t3-saved">1.25</div>
+    </div>
+
+    <div class="task-row">
+      <div class="task-name">Board meeting preparation<small>Gathering data, building presentations, talking points</small></div>
+      <input type="number" id="t4-now" value="3" min="0" max="40" step="0.5" oninput="calc()" />
+      <input type="number" id="t4-ai" value="0.5" min="0" max="40" step="0.25" oninput="calc()" />
+      <div class="saved-cell" id="t4-saved">2.5</div>
+    </div>
+
+    <div class="task-row">
+      <div class="task-name">Parent &amp; community communication<small>Updates, newsletters, individual responses</small></div>
+      <input type="number" id="t5-now" value="2.5" min="0" max="40" step="0.5" oninput="calc()" />
+      <input type="number" id="t5-ai" value="0.5" min="0" max="40" step="0.25" oninput="calc()" />
+      <div class="saved-cell" id="t5-saved">2</div>
+    </div>
+
+    <div class="task-row">
+      <div class="task-name">Staff follow-ups &amp; scheduling<small>Tracking action items, reminders, coordination</small></div>
+      <input type="number" id="t6-now" value="2" min="0" max="40" step="0.5" oninput="calc()" />
+      <input type="number" id="t6-ai" value="0.25" min="0" max="40" step="0.25" oninput="calc()" />
+      <div class="saved-cell" id="t6-saved">1.75</div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="label">Hours Recovered Per Week</div>
+        <div class="value" style="color:var(--green)" id="totalHours">13.0</div>
+        <div class="sub" id="totalHoursSub">That's over a full workday. Every week.</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Annual Value of Recovered Time</div>
+        <div class="value" style="color:var(--accent)" id="annualValue">$50,700</div>
+        <div class="sub">Based on $75/hr loaded rate &times; 52 weeks</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEYOND TIME -->
+  <div class="section">
+    <div class="section-label">Layer 2: Capabilities You Don't Have Today</div>
+    <h2 class="serif">What Becomes Possible</h2>
+    <p class="desc">These aren't time savings. These are things that are currently impossible — no matter how many hours you work.</p>
+
+    <div class="beyond-card">
+      <div class="icon" style="background:var(--accent-bg2);color:var(--accent)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+      </div>
+      <h4>Institutional Memory</h4>
+      <p>Every meeting, every decision, every conversation — captured, searchable, connected. When a board member asks "didn't we discuss this last October?" you have the answer in seconds. Not in your head. In the system.</p>
+    </div>
+
+    <div class="beyond-card">
+      <div class="icon" style="background:var(--green-bg);color:var(--green)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg>
+      </div>
+      <h4>Personalized Communication at Scale</h4>
+      <p>Draft 30 unique parent emails about 30 different students, each with specific context. Send thoughtful follow-ups to every teacher after an observation. Impossible by hand. Trivial with Jarvis.</p>
+    </div>
+
+    <div class="beyond-card">
+      <div class="icon" style="background:var(--blue-bg);color:var(--blue)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" /></svg>
+      </div>
+      <h4>Pattern Recognition Across Months</h4>
+      <p>"What topics keep surfacing in meetings that we haven't resolved?" "Which action items keep getting pushed?" AI surfaces patterns your memory can't hold. Better information means better decisions.</p>
+    </div>
+
+    <div class="beyond-card">
+      <div class="icon" style="background:rgba(251,113,133,0.1);color:#FB7185">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
+      </div>
+      <h4>Decision Support with Full Context</h4>
+      <p>"Before I respond to this parent, what do I know about this family? What have we discussed before?" Jarvis holds the context so you can make the right call, not just a fast one.</p>
+    </div>
+  </div>
+
+  <!-- LAYER 3 -->
+  <div class="section">
+    <div class="section-label">Layer 3: What Recovered Hours Become</div>
+    <h2 class="serif">Where Does the Time Go?</h2>
+    <p class="desc">You didn't become a superintendent to draft meeting minutes. When admin shrinks, the hours go back to what matters.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Instead of drafting emails</div>
+        <div style="font-size:0.95rem;font-weight:600">Visit classrooms</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Instead of building agendas</div>
+        <div style="font-size:0.95rem;font-weight:600">Coach teachers</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Instead of scrambling for board prep</div>
+        <div style="font-size:0.95rem;font-weight:600">Think strategically</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Instead of catching up on weekends</div>
+        <div style="font-size:0.95rem;font-weight:600">Be at your son's game</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTMENT -->
+  <div class="section">
+    <div class="invest-box">
+      <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600">The Math</div>
+      <div class="pct" id="investPct">You keep 90%+</div>
+      <p>Your recovered time is worth <strong id="investAnnual">$50,700/year</strong>. The investment to build your Jarvis is a fraction of that. You keep the overwhelming majority of the value.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div style="font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:6px">Next Generation Learners</div>
+    <p>Built by Brayan Tenesaca &middot; Babson College</p>
+  </div>
+
+</div>
+
+<script>
+function calc() {
+  let totalSaved = 0;
+  for (let i = 1; i <= 6; i++) {
+    const now = parseFloat(document.getElementById(`t${i}-now`).value) || 0;
+    const ai = parseFloat(document.getElementById(`t${i}-ai`).value) || 0;
+    const saved = Math.max(0, now - ai);
+    document.getElementById(`t${i}-saved`).textContent = saved.toFixed(saved % 1 === 0 ? 0 : 1);
+    totalSaved += saved;
+  }
+
+  const rate = 75;
+  const annual = totalSaved * rate * 52;
+
+  document.getElementById('totalHours').textContent = totalSaved.toFixed(1);
+  if (totalSaved >= 8) {
+    document.getElementById('totalHoursSub').textContent = `That's over a full workday. Every week.`;
+  } else if (totalSaved >= 4) {
+    document.getElementById('totalHoursSub').textContent = `That's half a workday back. Every week.`;
+  } else {
+    document.getElementById('totalHoursSub').textContent = `${totalSaved.toFixed(1)} hours back every single week.`;
+  }
+
+  document.getElementById('annualValue').textContent = '$' + Math.round(annual).toLocaleString();
+  document.getElementById('investAnnual').textContent = '$' + Math.round(annual).toLocaleString() + '/year';
+}
+calc();
+</script>
+</body>
+</html>
