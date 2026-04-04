@@ -107,14 +107,51 @@
       .nav-links{display:none}
     }
 
+    /* Download button */
+    .dl-btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--bg);padding:14px 28px;border-radius:var(--radius);font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;border:none;margin-top:16px;letter-spacing:.02em}
+    .dl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.25)}
+
     /* Print styles */
     @media print{
-      body{background:white;color:#111}
-      nav,.cta-section,.print-btn,.audit-check{display:none}
-      .tactic,.counter-card,.debrief-card,.audit-section{border:1px solid #ccc;break-inside:avoid}
-      .tactic::before,.counter-card::before{display:none}
-      .sh-title,.hero h1{color:#111}
-      .tactic h3,.counter-card h3,.debrief-card h3{color:#111}
+      *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+      body{background:#0C0C0E!important;color:#E8E6E3!important;font-size:11pt;line-height:1.6}
+      nav,.cta-section,.print-btn,.dl-btn,.audit-result,.hero-rule{display:none!important}
+      .container{max-width:100%;padding:0 40px}
+      .hero{padding:50px 0 40px;border-bottom:1px solid #2A2A30;page-break-after:avoid}
+      .hero h1{font-size:2.4rem;color:#F5F0E8!important}
+      .hero-label{color:#C9A84C!important}
+      .hero-sub{color:#9A9A9E!important}
+      .hero-quote{color:#6A6A70!important}
+      .hero-quote .attr{color:#C9A84C!important}
+      .section{padding:40px 0;border-bottom:1px solid #2A2A30}
+      .sh-num{color:#252529!important;font-size:2.4rem}
+      .sh-label{color:#C9A84C!important}
+      .sh-title{color:#F5F0E8!important;font-size:1.4rem}
+      .sh-desc{color:#9A9A9E!important}
+      .tactic,.counter-card,.debrief-card,.audit-section{background:#141416!important;border:1px solid #2A2A30!important;break-inside:avoid;margin-bottom:12px;page-break-inside:avoid}
+      .tactic::before{background:#8B2020!important}
+      .counter-card::before{background:#2D6A4F!important}
+      .tactic h3,.counter-card h3,.debrief-card h3{color:#F5F0E8!important}
+      .tactic .t-label{color:#8B2020!important}
+      .counter-card .c-label{color:#2D6A4F!important}
+      .tactic .t-lewis{color:#6A6A70!important;border-left:2px solid #2A2A30!important}
+      .tactic .t-modern{color:#9A9A9E!important}
+      .tactic .t-modern strong{color:#C9A84C!important}
+      .counter-card p,.debrief-card p{color:#9A9A9E!important}
+      .audit-q{border-bottom:1px solid #2A2A30!important}
+      .audit-q .q-text{color:#9A9A9E!important}
+      .audit-q .q-text strong{color:#E8E6E3!important}
+      .audit-check{border:2px solid #3A3A42!important;background:transparent!important;width:18px!important;height:18px!important}
+      .audit-check.checked{display:block!important}
+      .audit-check::after{display:none!important}
+      .audit-section h3{color:#F5F0E8!important}
+      .debrief-card h3 .d-num{background:rgba(201,168,76,.12)!important;color:#C9A84C!important}
+      .debrief-prompt{background:#1C1C20!important;border:1px solid #2A2A30!important;color:#6A6A70!important}
+      footer{border-top:1px solid #2A2A30!important;background:transparent!important}
+      footer p{color:#6A6A70!important}
+      footer a{color:#C9A84C!important}
+      .qr-frame{display:none!important}
+      @page{margin:0.5in;size:letter}
     }
   </style>
 </head>
@@ -138,6 +175,8 @@
     <p class="hero-label">A Field Manual for Fathers</p>
     <h1>The Legatus<br>Protocol</h1>
     <p class="hero-sub">A tactical guide for Catholic fathers and young men who refuse to lose their families to the Long, Dull Drift of digital distraction and spiritual apathy.</p>
+    <button class="dl-btn" onclick="window.print()">Download as PDF</button>
+    <div style="margin-top:24px"></div>
     <div class="hero-quote">
       "The safest road to Hell is the gradual one &mdash; the gentle slope, soft underfoot, without sudden turnings, without milestones, without signposts."
       <span class="attr">C.S. Lewis, The Screwtape Letters</span>
@@ -285,6 +324,7 @@
     </div>
 
     <a href="javascript:window.print()" class="print-btn">Print This Template</a>
+    <button class="dl-btn" onclick="window.print()" style="margin-left:12px">Download Full PDF</button>
   </div>
 
   <!-- SOURCE -->
