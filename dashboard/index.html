@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forge — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0C0C0E;--surface:#141416;--surface-2:#1C1C20;--surface-3:#252529;
+      --border:#2A2A30;--border-2:#3A3A42;
+      --text:#E8E6E3;--text-2:#9A9A9E;--text-3:#6A6A70;
+      --gold:#C9A84C;--gold-glow:rgba(201,168,76,.1);
+      --blue:#3B82F6;--blue-glow:rgba(59,130,246,.1);
+      --green:#10B981;--green-glow:rgba(16,185,129,.1);
+      --purple:#8B5CF6;--purple-glow:rgba(139,92,246,.1);
+      --orange:#F59E0B;--orange-glow:rgba(245,158,11,.1);
+      --cyan:#06B6D4;--cyan-glow:rgba(6,182,212,.1);
+      --pink:#EC4899;--pink-glow:rgba(236,72,153,.1);
+      --red:#EF4444;--red-glow:rgba(239,68,68,.1);
+    }
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+    /* Header */
+    .header{padding:40px 24px 20px;text-align:center;border-bottom:1px solid var(--border)}
+    .header .logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:var(--gold);letter-spacing:.05em;margin-bottom:4px}
+    .header .sub{font-size:.75rem;color:var(--text-3);letter-spacing:.15em;text-transform:uppercase;font-weight:500}
+
+    /* Time/greeting */
+    .greeting{text-align:center;padding:28px 24px 8px}
+    .greeting .time{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
+    .greeting .msg{font-size:.85rem;color:var(--text-2);margin-top:4px}
+
+    /* App grid */
+    .container{max-width:640px;margin:0 auto;padding:24px}
+    .section-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-3);font-weight:700;margin-bottom:14px;padding-left:4px}
+    .app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px}
+    .app-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 16px;text-align:center;cursor:pointer;transition:all .25s;text-decoration:none;color:var(--text);position:relative}
+    .app-card:hover{transform:translateY(-4px);border-color:var(--border-2);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+    .app-card:active{transform:scale(.97)}
+    .app-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.4rem}
+    .app-card .app-name{font-size:.82rem;font-weight:700;margin-bottom:2px}
+    .app-card .app-desc{font-size:.65rem;color:var(--text-3);line-height:1.4}
+    .app-card .app-badge{position:absolute;top:8px;right:8px;font-size:.5rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:6px}
+
+    /* Quick actions */
+    .quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
+    .quick-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--text)}
+    .quick-card:hover{border-color:var(--gold);transform:translateX(4px)}
+    .quick-icon{font-size:1.2rem;flex-shrink:0}
+    .quick-card .q-name{font-size:.78rem;font-weight:600}
+    .quick-card .q-desc{font-size:.62rem;color:var(--text-3)}
+
+    /* Footer */
+    .footer{text-align:center;padding:24px;border-top:1px solid var(--border)}
+    .footer p{font-size:.68rem;color:var(--text-3)}
+    .footer a{color:var(--gold);text-decoration:none}
+
+    @media(max-width:480px){
+      .app-grid{grid-template-columns:repeat(2,1fr)}
+      .quick-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Forge</div>
+  <div class="sub">Your Sovereign Operating System</div>
+</div>
+
+<div class="greeting">
+  <div class="time" id="clock"></div>
+  <div class="msg" id="greetMsg"></div>
+</div>
+
+<div class="container">
+
+  <div class="section-label">Apps</div>
+  <div class="app-grid">
+    <a href="https://forge-tool-mu.vercel.app" class="app-card" target="_blank">
+      <div class="app-icon" style="background:var(--blue-glow)">📅</div>
+      <div class="app-name">Calendar</div>
+      <div class="app-desc">Time tracking & schedule</div>
+    </a>
+    <a href="https://forge-tool-mu.vercel.app" class="app-card" target="_blank">
+      <div class="app-icon" style="background:var(--green-glow)">👥</div>
+      <div class="app-name">CRM</div>
+      <div class="app-desc">People & relationships</div>
+    </a>
+    <a href="https://forge-tool-mu.vercel.app" class="app-card" target="_blank">
+      <div class="app-icon" style="background:var(--purple-glow)">📨</div>
+      <div class="app-name">Outreach</div>
+      <div class="app-desc">Email campaigns & drafts</div>
+    </a>
+    <a href="https://forgelegatus.com/protocol" class="app-card" target="_blank">
+      <div class="app-icon" style="background:var(--orange-glow)">📜</div>
+      <div class="app-name">Protocol</div>
+      <div class="app-desc">The Legatus Protocol</div>
+    </a>
+    <a href="https://nextgenerationlearners.com/woodstock" class="app-card" target="_blank">
+      <div class="app-icon" style="background:var(--cyan-glow)">🛠️</div>
+      <div class="app-name">Toolkit</div>
+      <div class="app-desc">Woodstock educator tools</div>
+    </a>
+    <a href="#" class="app-card" style="opacity:.5;cursor:default">
+      <div class="app-icon" style="background:var(--pink-glow)">✉️</div>
+      <div class="app-name">Email AI</div>
+      <div class="app-desc">Smart inbox & auto-draft</div>
+      <span class="app-badge" style="background:var(--gold-glow);color:var(--gold)">Coming Soon</span>
+    </a>
+  </div>
+
+  <div class="section-label">Quick Actions</div>
+  <div class="quick-grid">
+    <a href="https://forge-tool-mu.vercel.app" class="quick-card" target="_blank">
+      <span class="quick-icon">⚡</span>
+      <div><div class="q-name">New Event</div><div class="q-desc">Add to calendar</div></div>
+    </a>
+    <a href="https://forge-tool-mu.vercel.app" class="quick-card" target="_blank">
+      <span class="quick-icon">🔍</span>
+      <div><div class="q-name">Find Contact</div><div class="q-desc">Search your CRM</div></div>
+    </a>
+    <a href="https://nextgenerationlearners.com/qr" class="quick-card" target="_blank">
+      <span class="quick-icon">📬</span>
+      <div><div class="q-name">Email Capture</div><div class="q-desc">QR code sign-up page</div></div>
+    </a>
+    <a href="https://nextgenerationlearners.com/game" class="quick-card" target="_blank">
+      <span class="quick-icon">🎮</span>
+      <div><div class="q-name">Student Games</div><div class="q-desc">Financial literacy & math</div></div>
+    </a>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Forge &middot; Built by <a href="https://forgelegatus.com">Brayan Tenesaca</a> &middot; Sovereign. Local. Yours.</p>
+</div>
+
+<script>
+function updateClock(){
+  const now=new Date();
+  const h=now.getHours(),m=now.getMinutes();
+  const ampm=h>=12?'PM':'AM';
+  const h12=h%12||12;
+  document.getElementById('clock').textContent=`${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+
+  let msg='Good evening, Brayan.';
+  if(h<12)msg='Good morning, Brayan.';
+  else if(h<17)msg='Good afternoon, Brayan.';
+  document.getElementById('greetMsg').textContent=msg;
+}
+updateClock();
+setInterval(updateClock,30000);
+</script>
+
+</body>
+</html>
