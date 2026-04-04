@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Legatus Protocol</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0C0C0E;--surface:#141416;--surface-2:#1C1C20;--surface-3:#252529;
+      --border:#2A2A30;--border-2:#3A3A42;
+      --text:#E8E6E3;--text-2:#9A9A9E;--text-3:#6A6A70;
+      --gold:#C9A84C;--gold-glow:rgba(201,168,76,.12);
+      --red:#8B2020;--red-glow:rgba(139,32,32,.15);
+      --green:#2D6A4F;--green-glow:rgba(45,106,79,.15);
+      --cream:#F5F0E8;
+      --radius:8px;--radius-lg:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    .container{max-width:720px;margin:0 auto;padding:0 24px}
+
+    /* Nav */
+    nav{position:sticky;top:0;z-index:100;background:rgba(12,12,14,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 24px}
+    nav .inner{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .nav-brand{font-family:'Playfair Display',serif;font-size:.85rem;color:var(--gold);font-weight:700;letter-spacing:.08em}
+    .nav-links{display:flex;gap:20px}
+    .nav-link{font-size:.72rem;color:var(--text-3);text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font-weight:600;transition:color .2s}
+    .nav-link:hover{color:var(--gold)}
+
+    /* Hero */
+    .hero{padding:100px 0 80px;text-align:center;position:relative;border-bottom:1px solid var(--border)}
+    .hero-rule{width:60px;height:2px;background:var(--gold);margin:0 auto 24px}
+    .hero-label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:16px;color:var(--cream)}
+    .hero-sub{font-size:.95rem;color:var(--text-2);max-width:480px;margin:0 auto 32px;line-height:1.8;font-weight:300}
+    .hero-quote{font-style:italic;font-size:.88rem;color:var(--text-3);max-width:440px;margin:0 auto;line-height:1.7;border-top:1px solid var(--border);padding-top:24px}
+    .hero-quote .attr{font-style:normal;color:var(--gold);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-top:8px;display:block;font-weight:600}
+
+    /* Sections */
+    .section{padding:72px 0;border-bottom:1px solid var(--border)}
+    .section:last-of-type{border-bottom:none}
+    .sh-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:var(--surface-3);margin-bottom:8px;line-height:1}
+    .sh-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:700}
+    .sh-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.5vw,2rem);font-weight:800;line-height:1.2;margin-bottom:8px;color:var(--cream)}
+    .sh-desc{font-size:.88rem;color:var(--text-2);max-width:540px;line-height:1.8;margin-bottom:32px}
+
+    /* Tactic cards */
+    .tactic{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color .3s}
+    .tactic:hover{border-color:var(--border-2)}
+    .tactic::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red)}
+    .tactic .t-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:8px;padding-left:4px}
+    .tactic h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:8px;color:var(--cream)}
+    .tactic .t-lewis{font-style:italic;font-size:.82rem;color:var(--text-3);margin-bottom:10px;padding-left:12px;border-left:2px solid var(--border)}
+    .tactic .t-modern{font-size:.85rem;color:var(--text-2);line-height:1.7}
+    .tactic .t-modern strong{color:var(--gold);font-weight:600}
+
+    /* Counter card */
+    .counter-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-bottom:16px;position:relative;overflow:hidden}
+    .counter-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green)}
+    .counter-card .c-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:8px;padding-left:4px}
+    .counter-card h3{font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--cream)}
+    .counter-card p{font-size:.85rem;color:var(--text-2);line-height:1.7}
+
+    /* Audit */
+    .audit-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;margin-bottom:20px}
+    .audit-section h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:16px;color:var(--cream)}
+    .audit-q{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+    .audit-q:last-child{border-bottom:none}
+    .audit-check{width:22px;height:22px;border:2px solid var(--border-2);border-radius:6px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:2px}
+    .audit-check.checked{background:var(--red);border-color:var(--red)}
+    .audit-check.checked::after{content:'!';color:white;font-size:.7rem;font-weight:800}
+    .audit-q .q-text{font-size:.85rem;color:var(--text-2);line-height:1.6}
+    .audit-q .q-text strong{color:var(--text);font-weight:600}
+    .audit-result{background:var(--surface-2);border-radius:var(--radius);padding:20px;margin-top:20px;text-align:center}
+    .audit-result .ar-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:800;color:var(--gold)}
+    .audit-result .ar-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-3);margin-top:4px;font-weight:600}
+    .audit-result .ar-msg{font-size:.85rem;color:var(--text-2);margin-top:8px;line-height:1.6}
+
+    /* Debrief */
+    .debrief-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-bottom:16px}
+    .debrief-card h3{font-size:.9rem;font-weight:700;color:var(--cream);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .debrief-card h3 .d-num{width:24px;height:24px;border-radius:6px;background:var(--gold-glow);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
+    .debrief-card p{font-size:.85rem;color:var(--text-2);line-height:1.7;margin-bottom:10px}
+    .debrief-prompt{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-size:.82rem;color:var(--text-3);line-height:1.6;font-style:italic}
+
+    /* Print template */
+    .print-btn{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);padding:12px 24px;border-radius:var(--radius);font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;margin-top:16px}
+    .print-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* QR / CTA */
+    .cta-section{padding:80px 0;text-align:center;border-top:1px solid var(--border)}
+    .cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,1.8rem);font-weight:800;color:var(--cream);margin-bottom:8px}
+    .cta-section p{font-size:.88rem;color:var(--text-2);max-width:420px;margin:0 auto 28px;line-height:1.7}
+    .qr-frame{display:inline-block;background:white;padding:12px;border-radius:var(--radius-lg);margin-bottom:16px}
+    .qr-frame img{display:block;border-radius:6px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border);padding:40px 0;text-align:center}
+    footer p{font-size:.72rem;color:var(--text-3);line-height:1.6}
+    footer a{color:var(--gold);text-decoration:none}
+
+    /* Responsive */
+    @media(max-width:640px){
+      .hero{padding:72px 0 56px}
+      .nav-links{display:none}
+    }
+
+    /* Print styles */
+    @media print{
+      body{background:white;color:#111}
+      nav,.cta-section,.print-btn,.audit-check{display:none}
+      .tactic,.counter-card,.debrief-card,.audit-section{border:1px solid #ccc;break-inside:avoid}
+      .tactic::before,.counter-card::before{display:none}
+      .sh-title,.hero h1{color:#111}
+      .tactic h3,.counter-card h3,.debrief-card h3{color:#111}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="nav-brand">The Legatus Protocol</div>
+    <div class="nav-links">
+      <a href="#playbook" class="nav-link">Playbook</a>
+      <a href="#audit" class="nav-link">Audit</a>
+      <a href="#debrief" class="nav-link">Debrief</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-rule"></div>
+    <p class="hero-label">A Field Manual for Fathers</p>
+    <h1>The Legatus<br>Protocol</h1>
+    <p class="hero-sub">A tactical guide for Catholic fathers and young men who refuse to lose their families to the Long, Dull Drift of digital distraction and spiritual apathy.</p>
+    <div class="hero-quote">
+      "The safest road to Hell is the gradual one &mdash; the gentle slope, soft underfoot, without sudden turnings, without milestones, without signposts."
+      <span class="attr">C.S. Lewis, The Screwtape Letters</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: THE ENEMY'S PLAYBOOK -->
+  <div class="section" id="playbook">
+    <div class="sh-num">01</div>
+    <div class="sh-label">The Enemy's Playbook</div>
+    <h2 class="sh-title">How You Lose Without Knowing It</h2>
+    <p class="sh-desc">In The Screwtape Letters, a senior demon teaches his apprentice how to destroy a human soul. Not through great crimes. Through small, ordinary distractions. Here are his tactics &mdash; translated into the language of your life.</p>
+
+    <div class="tactic">
+      <div class="t-label">Tactic 1</div>
+      <h3>The Newsboy Effect</h3>
+      <div class="t-lewis">"Once he was in the street, the sight of a newsboy and a bus convinced him that his spiritual thoughts were just a dream." &mdash; Lewis</div>
+      <div class="t-modern">A man sits in a library having deep thoughts about his purpose. Instead of arguing against those thoughts, the demon simply reminds him it's time for lunch. Once he's on the street, the noise of the ordinary world convinces him his spiritual clarity was just a passing feeling. <strong>Your version: you open your phone to check one thing. Thirty minutes later, you've consumed nothing of value and forgotten what you sat down to think about.</strong></div>
+    </div>
+
+    <div class="tactic">
+      <div class="t-label">Tactic 2</div>
+      <h3>The Gradual Road</h3>
+      <div class="t-lewis">"The most effective way to ruin a soul is not through great crimes but through small, cumulative distractions."</div>
+      <div class="t-modern">You don't become a bad father overnight. You become an absent one. One skipped bedtime story. One more hour of scrolling. One more night where you're physically home but mentally somewhere else. <strong>No single choice looks dangerous. That's the point. The slope is gentle. There are no signposts.</strong></div>
+    </div>
+
+    <div class="tactic">
+      <div class="t-label">Tactic 3</div>
+      <h3>Mental Noise</h3>
+      <div class="t-lewis">"The constant stream of mental noise prevents young men from ever sitting in silence with their own thoughts."</div>
+      <div class="t-modern">Social media is the modern newsboy. It provides a constant stream of information that feels productive but produces nothing. <strong>Podcasts while driving. Reels while eating. Music while working. News while waiting. You have eliminated every moment of silence from your day.</strong> And silence is where conviction lives.</div>
+    </div>
+
+    <div class="tactic">
+      <div class="t-label">Tactic 4</div>
+      <h3>Pride Disguised as Virtue</h3>
+      <div class="t-lewis">"Make the patient proud of his own humility."</div>
+      <div class="t-modern">The demon doesn't attack your desire to be good. He weaponizes it. You post about discipline. You optimize your morning routine. You track your habits in an app. <strong>But when was the last time you asked your wife how she's doing? When was the last time you sat on the floor and played with your kids without your phone in the room?</strong> The grind without purpose is just another form of self-centered distraction.</div>
+    </div>
+
+    <div class="tactic">
+      <div class="t-label">Tactic 5</div>
+      <h3>The Pressure of the Ordinary</h3>
+      <div class="t-lewis">"The gradual road is paved with the pressure of the ordinary, which keeps a person focused on the immediate moment rather than their long-term values."</div>
+      <div class="t-modern">Emails. Deadlines. Commute. Groceries. Lawn. Bills. None of it is evil. All of it is urgent. And urgency is the enemy's favorite disguise. <strong>You will never "find time" for what matters. The ordinary will consume every available minute unless you fight for the ones that count.</strong></div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="sh-label" style="color:var(--green)">The Counter-Play</div>
+      <p class="sh-desc">The demon cannot force you to do anything. He can only suggest and distract. Lewis reveals that your greatest defense is simple awareness. If you recognize the mental noise for what it is, the distraction loses its power.</p>
+
+      <div class="counter-card">
+        <div class="c-label">Your Defense</div>
+        <h3>Awareness Breaks the Spell</h3>
+        <p>The man in the library lost his clarity because he didn't recognize the distraction. If he had named it &mdash; "this is the noise pulling me away" &mdash; he would have stayed. Your job is to see the tactic before it works. That's what the Vocation Audit is for.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: THE VOCATION AUDIT -->
+  <div class="section" id="audit">
+    <div class="sh-num">02</div>
+    <div class="sh-label">The Vocation Audit</div>
+    <h2 class="sh-title">Where Are You Drifting?</h2>
+    <p class="sh-desc">Answer honestly. Each checked box is a place where the Long, Dull Drift has taken hold. This isn't a guilt exercise. It's a diagnostic. You can't fix what you can't see.</p>
+
+    <div class="audit-section" id="auditPhysical">
+      <h3>The Newsboy &mdash; Physical Distraction</h3>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I pick up my phone within 10 minutes of waking up, <strong>before I've spoken to God or my family.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I scroll while eating meals, <strong>even when my family is at the table.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I use my phone in bed at night <strong>instead of being present with my wife or in prayer.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I check notifications during conversations with people I love.</div></div>
+    </div>
+
+    <div class="audit-section" id="auditNoise">
+      <h3>Mental Noise &mdash; Silence Elimination</h3>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I cannot drive, walk, or exercise <strong>without audio playing.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I have not sat in intentional silence for more than 5 minutes in the past week.</div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I consume news, podcasts, or social media <strong>more than I pray or read Scripture.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">When I have a free moment, my instinct is to reach for my phone, <strong>not to think.</strong></div></div>
+    </div>
+
+    <div class="audit-section" id="auditGradual">
+      <h3>The Gradual Road &mdash; Small Surrenders</h3>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I have skipped prayer, Mass, or spiritual reading <strong>more than once this month</strong> without a real reason.</div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I've told myself "I'll be more present tomorrow" <strong>more than three times this week.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I spend more time consuming content about being a good father <strong>than actually being with my children.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I cannot name the last time I had an uninterrupted, phone-free hour with my family.</div></div>
+    </div>
+
+    <div class="audit-section" id="auditPride">
+      <h3>Pride as Virtue &mdash; The Hustle Trap</h3>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I post about discipline, faith, or fatherhood online <strong>more than I practice it privately.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I track habits, routines, and productivity <strong>but have no system for my spiritual life.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">I feel productive when I'm busy, <strong>even when none of the busyness serves my family.</strong></div></div>
+      <div class="audit-q"><div class="audit-check" onclick="toggleCheck(this)"></div><div class="q-text">My wife or children have told me I'm not present, <strong>and I dismissed it.</strong></div></div>
+    </div>
+
+    <div class="audit-result" id="auditResult">
+      <div class="ar-num" id="auditScore">0</div>
+      <div class="ar-label">Drift Indicators Found</div>
+      <div class="ar-msg" id="auditMsg">Check the boxes above to see where you stand.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: THE SUNDAY NIGHT DEBRIEF -->
+  <div class="section" id="debrief">
+    <div class="sh-num">03</div>
+    <div class="sh-label">The Sunday Night Debrief</div>
+    <h2 class="sh-title">A Weekly Review to Hold the Line</h2>
+    <p class="sh-desc">Every Sunday night, before the week starts, sit down for 15 minutes. No phone. No screen. A pen and this template. Ask yourself these questions honestly.</p>
+
+    <div class="debrief-card">
+      <h3><span class="d-num">1</span>Presence Check</h3>
+      <p>How many uninterrupted, phone-free hours did I spend with my family this week?</p>
+      <div class="debrief-prompt">Name a specific moment this week where you were fully present. If you can't name one, that's your answer.</div>
+    </div>
+
+    <div class="debrief-card">
+      <h3><span class="d-num">2</span>The Drift Check</h3>
+      <p>Where did I drift this week? What small surrenders did I make?</p>
+      <div class="debrief-prompt">Be specific. "I scrolled for 40 minutes after the kids went to bed instead of talking to my wife." Name it. Don't generalize.</div>
+    </div>
+
+    <div class="debrief-card">
+      <h3><span class="d-num">3</span>The Noise Check</h3>
+      <p>How much silence did I have this week? Did I pray, or did I just think about praying?</p>
+      <div class="debrief-prompt">Screwtape's goal is to turn your prayers into "mere mental exercises." Did you actually pray, or did you just intend to?</div>
+    </div>
+
+    <div class="debrief-card">
+      <h3><span class="d-num">4</span>The Pride Check</h3>
+      <p>Am I building for my family, or am I building for my image?</p>
+      <div class="debrief-prompt">Lewis warns: the enemy uses your desire to be good as a weapon. Is your discipline serving your family or your ego? Be honest.</div>
+    </div>
+
+    <div class="debrief-card">
+      <h3><span class="d-num">5</span>The Next Week</h3>
+      <p>One specific thing I will do differently this week to be more present.</p>
+      <div class="debrief-prompt">Not three things. Not a system overhaul. One thing. Write it down. Do it. Report back next Sunday.</div>
+    </div>
+
+    <a href="javascript:window.print()" class="print-btn">Print This Template</a>
+  </div>
+
+  <!-- SOURCE -->
+  <div class="section" style="padding-bottom:40px">
+    <div class="sh-label">Source Text</div>
+    <h2 class="sh-title" style="font-size:1.2rem;margin-bottom:16px">About This Manual</h2>
+    <p style="font-size:.85rem;color:var(--text-2);line-height:1.8;margin-bottom:16px">The Legatus Protocol is a remediation of a textual analysis of C.S. Lewis's <em>The Screwtape Letters</em> (1942). The original essay analyzed how Lewis uses the epistolary genre and the concept of audience to expose the tactics of spiritual decay through physical comfort and mental noise.</p>
+    <p style="font-size:.85rem;color:var(--text-2);line-height:1.8;margin-bottom:16px">This manual translates those academic findings into a tactical field guide for Catholic fathers. The distraction categories in the Vocation Audit are drawn directly from the themes identified in the analysis: the newsboy effect, the gradual road, mental noise, pride disguised as virtue, and the pressure of the ordinary.</p>
+    <p style="font-size:.85rem;color:var(--text-2);line-height:1.8"><em>Legatus</em> is Latin for "one who is sent" &mdash; a man entrusted with a mission. Your mission is your family.</p>
+    <p style="font-size:.78rem;color:var(--text-3);margin-top:20px">Brayan Tenesaca &middot; WRT 1001 &middot; Professor Counter &middot; Babson College &middot; Spring 2026</p>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <div style="width:60px;height:2px;background:var(--gold);margin:0 auto 24px"></div>
+    <h2>Join the Beta Community</h2>
+    <p>If this manual hit something real, you're not alone. We're building a community of fathers who refuse to drift. Scan the code or tap below.</p>
+    <div class="qr-frame">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://forgelegatus.com/protocol/join&color=0C0C0E&bgcolor=FFFFFF" alt="Join the community" width="160" height="160" />
+    </div>
+    <p style="font-size:.75rem;color:var(--text-3);margin-top:8px">forgelegatus.com/protocol</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p style="color:var(--gold);font-family:'Playfair Display',serif;font-size:.85rem;margin-bottom:8px">The Legatus Protocol</p>
+    <p>Built by Brayan Tenesaca &middot; <a href="https://forgelegatus.com">forgelegatus.com</a></p>
+    <p style="margin-top:6px">Based on <em>The Screwtape Letters</em> by C.S. Lewis (1942)</p>
+  </div>
+</footer>
+
+<script>
+function toggleCheck(el){
+  el.classList.toggle('checked');
+  updateAudit();
+}
+
+function updateAudit(){
+  const checked=document.querySelectorAll('.audit-check.checked').length;
+  document.getElementById('auditScore').textContent=checked;
+  const el=document.getElementById('auditMsg');
+  if(checked===0)el.textContent='Check the boxes above to see where you stand.';
+  else if(checked<=3)el.textContent='Minor drift. You\'re aware. Stay sharp. The road is gentle.';
+  else if(checked<=7)el.textContent='Moderate drift. The slope is working. You need to course-correct now, not next week.';
+  else if(checked<=11)el.textContent='Significant drift. The Long, Dull Road has you. Your family needs you back. Start the Sunday Night Debrief this week.';
+  else el.textContent='Critical drift. You are the man in the library. The newsboy has won. Stop everything. Go be with your family tonight.';
+}
+</script>
+
+</body>
+</html>
