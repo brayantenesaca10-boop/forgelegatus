@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Legatus Protocol — Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #0a0a0a;
+    color: #f5f0e8;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    padding: 4vh 5vw;
+    gap: 2vh 4vw;
+  }
+
+  /* ---- Header spans full width ---- */
+  .header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(191,163,107,0.3);
+    padding-bottom: 2vh;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-weight: 700;
+    color: #bfa36b;
+    letter-spacing: 0.02em;
+  }
+
+  .header .subtitle {
+    font-size: clamp(0.75rem, 1.2vw, 1.1rem);
+    font-weight: 300;
+    color: rgba(245,240,232,0.55);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ---- Left column: 3 key points ---- */
+  .points {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3.5vh;
+  }
+
+  .point {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .point-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    font-weight: 700;
+    color: #bfa36b;
+    line-height: 1;
+    min-width: 2rem;
+  }
+
+  .point-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.95rem, 1.4vw, 1.35rem);
+    font-weight: 700;
+    color: #f5f0e8;
+    margin-bottom: 0.3rem;
+  }
+
+  .point-content p {
+    font-size: clamp(0.7rem, 1vw, 0.95rem);
+    font-weight: 300;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.5;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0a0a0a;
+    background: #bfa36b;
+    padding: 0.15em 0.55em;
+    border-radius: 3px;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ---- Right column: preview + QR ---- */
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+  }
+
+  .sections-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4vh;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .section-card {
+    background: rgba(191,163,107,0.07);
+    border: 1px solid rgba(191,163,107,0.18);
+    border-radius: 8px;
+    padding: 1.4vh 1.4vw;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+    min-width: 2.2rem;
+    text-align: center;
+  }
+
+  .section-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.8rem, 1.1vw, 1.05rem);
+    color: #bfa36b;
+    margin-bottom: 0.15rem;
+  }
+
+  .section-card p {
+    font-size: clamp(0.6rem, 0.8vw, 0.78rem);
+    color: rgba(245,240,232,0.5);
+    font-weight: 300;
+  }
+
+  .qr-block {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(191,163,107,0.05);
+    border: 1px solid rgba(191,163,107,0.15);
+    border-radius: 10px;
+    padding: 1.5vh 1.5vw;
+  }
+
+  .qr-block img {
+    width: clamp(80px, 8vw, 110px);
+    height: clamp(80px, 8vw, 110px);
+    border-radius: 6px;
+  }
+
+  .qr-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .qr-text .label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(245,240,232,0.4);
+    font-weight: 500;
+  }
+
+  .qr-text a {
+    font-size: clamp(0.7rem, 1vw, 0.92rem);
+    color: #bfa36b;
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-all;
+  }
+
+  .qr-text a:hover { text-decoration: underline; }
+
+  /* ---- Footer ---- */
+  .footer {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(191,163,107,0.15);
+    padding-top: 1.5vh;
+  }
+
+  .footer .origin {
+    font-size: clamp(0.55rem, 0.75vw, 0.72rem);
+    color: rgba(245,240,232,0.3);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .footer .lewis-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.6rem, 0.85vw, 0.82rem);
+    color: rgba(191,163,107,0.45);
+    font-style: italic;
+    max-width: 55%;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>The Legatus Protocol</h1>
+    <span class="subtitle">A Field Manual for Fathers</span>
+  </div>
+
+  <!-- Left: 3 Key Points -->
+  <div class="points">
+    <div class="point">
+      <span class="point-number">01</span>
+      <div class="point-content">
+        <span class="tag">Text</span>
+        <h3>From Essay to Field Manual</h3>
+        <p>A textual analysis of C.S. Lewis's <em>The Screwtape Letters</em> remediated into an actionable protocol for Catholic fathers fighting digital distraction and spiritual drift.</p>
+      </div>
+    </div>
+    <div class="point">
+      <span class="point-number">02</span>
+      <div class="point-content">
+        <span class="tag">Process</span>
+        <h3>Translating Analysis into Action</h3>
+        <p>Academic insights became three tactical tools &mdash; shifting audience from professor to father, and medium from paper to interactive digital manual.</p>
+      </div>
+    </div>
+    <div class="point">
+      <span class="point-number">03</span>
+      <div class="point-content">
+        <span class="tag">Takeaway</span>
+        <h3>Medium Shapes the Message</h3>
+        <p>Changing audience and format forced clarity &mdash; every idea had to earn its place by being immediately useful, not just intellectually sound.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Section Previews + QR -->
+  <div class="right">
+    <div class="sections-preview">
+      <div class="section-card">
+        <span class="section-icon">&#9876;</span>
+        <div>
+          <h4>The Enemy's Playbook</h4>
+          <p>5 tactics of spiritual decay drawn from Lewis</p>
+        </div>
+      </div>
+      <div class="section-card">
+        <span class="section-icon">&#9878;</span>
+        <div>
+          <h4>The Vocation Audit</h4>
+          <p>Interactive self-diagnostic &mdash; where are you drifting?</p>
+        </div>
+      </div>
+      <div class="section-card">
+        <span class="section-icon">&#9737;</span>
+        <div>
+          <h4>The Sunday Night Debrief</h4>
+          <p>15-minute weekly reflection to hold the line</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qr-block">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fwww.forgelegatus.org%2Fprotocol&bgcolor=0a0a0a&color=bfa36b&format=png" alt="QR Code to The Legatus Protocol">
+      <div class="qr-text">
+        <span class="label">Read the full protocol</span>
+        <a href="https://www.forgelegatus.org/protocol" target="_blank">forgelegatus.org/protocol</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="origin">Remediated from a textual analysis of <em>The Screwtape Letters</em> (C.S. Lewis, 1942)</span>
+    <span class="lewis-quote">"The safest road to Hell is the gradual one &mdash; the gentle slope, soft underfoot."</span>
+  </div>
+
+</div>
+</body>
+</html>
