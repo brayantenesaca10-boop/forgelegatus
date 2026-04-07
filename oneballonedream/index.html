@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Ball One Dream — Youth Soccer Platform</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --dark: #0D0D0D;
+      --dark-2: #141414;
+      --dark-3: #1C1C1C;
+      --border: rgba(201, 168, 76, 0.2);
+      --text: #FFFFFF;
+      --muted: #FFFFFF;
+      --green: #4CAF50;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .hero-eyebrow  { animation: fadeUp 0.7s ease 0.1s both; }
+    .hero-headline { animation: fadeUp 0.7s ease 0.25s both; }
+    .hero-sub      { animation: fadeUp 0.7s ease 0.4s both; }
+    .hero-actions  { animation: fadeUp 0.7s ease 0.55s both; }
+
+    .section-title { position: relative; display: inline-block; }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; left: 0;
+      width: 40px; height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease 0.3s;
+    }
+    .visible .section-title::after,
+    .section-title.visible::after { transform: scaleX(1); }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(13, 13, 13, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .nav-right { display: flex; gap: 1rem; align-items: center; }
+
+    .nav-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 4rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .hero-headline em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+      max-width: 620px;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-secondary {
+      display: inline-block;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* DIVIDER */
+    .divider { width: 100%; height: 1px; background: var(--border); }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-body {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 620px;
+      line-height: 1.9;
+    }
+
+    /* PROBLEM GRID */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 3.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .problem-item {
+      background: var(--dark-2);
+      padding: 2rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .problem-item:hover {
+      transform: translateY(-3px);
+      background: #1a1a1a;
+    }
+
+    .problem-item-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .problem-item p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+
+    /* VISION SECTION */
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .vision-card {
+      background: var(--dark-2);
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+    .vision-card:hover { background: #1a1a1a; }
+
+    .vision-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .vision-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .vision-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* QUOTE */
+    .mission-block {
+      padding: 5rem 4rem;
+      background: var(--dark-3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .mission-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: #fff;
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .mission-attribution {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* REVENUE */
+    .revenue-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .revenue-card {
+      background: var(--dark-2);
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+    .revenue-card:hover { background: #1a1a1a; }
+
+    .revenue-card .phase-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .revenue-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .revenue-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      margin-top: 3rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3rem 2rem;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--dark);
+    }
+
+    .timeline-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* PARTNERSHIP */
+    .partner-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .partner-card {
+      background: var(--dark-2);
+      padding: 3rem;
+    }
+
+    .partner-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .partner-list {
+      list-style: none;
+    }
+
+    .partner-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+    .partner-list li:last-child { border-bottom: none; }
+
+    .partner-list li::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.6rem;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 6rem 4rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-section .section-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-section .section-body {
+      margin: 0 auto 2.5rem;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .problem-grid,
+      .vision-grid,
+      .revenue-grid,
+      .partner-grid { grid-template-columns: 1fr; }
+      .mission-block { padding: 3rem 1.5rem; }
+      .cta-section { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">One Ball One Dream</div>
+    <div class="nav-right">
+      <a href="#problem" class="nav-link">The Problem</a>
+      <a href="#vision" class="nav-link">Vision</a>
+      <a href="#revenue" class="nav-link">Revenue</a>
+      <a href="#roadmap" class="nav-link">Roadmap</a>
+      <a href="#partnership" class="nav-link">Partnership</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Growth Roadmap & Proposal</div>
+    <h1 class="hero-headline">One Ball.<br><em>One Dream.</em></h1>
+    <p class="hero-sub">A youth soccer platform that puts the power back in the hands of players and families. Find clubs, showcase talent, and take control of your soccer journey — at every level, year-round.</p>
+    <div class="hero-actions">
+      <a href="#vision" class="btn-primary">See the Vision</a>
+      <a href="#partnership" class="btn-secondary">Partnership</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- THE PROBLEM -->
+  <section id="problem" class="reveal">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Youth Soccer Is Broken</h2>
+    <p class="section-body">Clubs sell promises. Families pay thousands. And when it doesn't work out, players are left scrambling with no system to find what's next. There's no centralized platform connecting players to opportunities — just Google searches and word of mouth.</p>
+
+    <div class="problem-grid">
+      <div class="problem-item reveal reveal-delay-1">
+        <div class="problem-item-label">False Promises</div>
+        <p>Clubs sell a bag of goods — "play for us, we'll get you to the next level." But how many kids actually reap the benefits? The system favors the clubs, not the players.</p>
+      </div>
+      <div class="problem-item reveal reveal-delay-2">
+        <div class="problem-item-label">No Visibility</div>
+        <p>Talented players have no centralized place to showcase their highlights, stats, and potential. Scouts and clubs can't find what they can't see.</p>
+      </div>
+      <div class="problem-item reveal reveal-delay-3">
+        <div class="problem-item-label">Relocation Nightmare</div>
+        <p>Families move and have zero resources to find clubs in their new area. They rely on Google. No platform exists to search by location, level, and age group.</p>
+      </div>
+      <div class="problem-item reveal reveal-delay-4">
+        <div class="problem-item-label">Year-Round Movement</div>
+        <p>Player movement isn't bounded by tryouts. Mid-season transfers, ID clinics, and new arrivals happen year-round — but there's no system for it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- QUOTE -->
+  <div class="mission-block reveal">
+    <p class="mission-quote">"Each player has a ball at their feet and gets to decide their own future."</p>
+    <p class="mission-attribution">The One Ball One Dream Philosophy</p>
+  </div>
+
+  <!-- VISION -->
+  <section id="vision" class="reveal">
+    <div class="section-label">The Platform</div>
+    <h2 class="section-title">LinkedIn for Youth Soccer</h2>
+    <p class="section-body">An all-in-one platform where players build profiles, clubs discover talent, and families find the right fit — powered by AI matching and built for every level from recreational to MLS.</p>
+
+    <div class="vision-grid">
+      <div class="vision-card reveal reveal-delay-1">
+        <div class="vision-icon">&#9917;</div>
+        <h3>Player Profiles</h3>
+        <p>Highlights, stats, contact info, position, age, location — everything a club needs to evaluate a player, all in one place. Video hosting built in.</p>
+      </div>
+      <div class="vision-card reveal reveal-delay-2">
+        <div class="vision-icon">&#128269;</div>
+        <h3>AI Club Discovery</h3>
+        <p>"I'm in 8th grade, I live in Danbury, and I want to play ECNL within 20 miles." The AI matches players to clubs based on location, skill level, and preferences.</p>
+      </div>
+      <div class="vision-card reveal reveal-delay-3">
+        <div class="vision-icon">&#128257;</div>
+        <h3>Transfer Market</h3>
+        <p>Year-round, open platform. Clubs post needs ("We need a U14 forward"), players post availability. Mid-season transfers, ID clinics, and relocations — all covered.</p>
+      </div>
+      <div class="vision-card reveal reveal-delay-1">
+        <div class="vision-icon">&#128231;</div>
+        <h3>Direct Communication</h3>
+        <p>Players reach out to clubs. Clubs reach out to players. No middlemen. Emails, profiles, and scouting event submissions — all from one dashboard.</p>
+      </div>
+      <div class="vision-card reveal reveal-delay-2">
+        <div class="vision-icon">&#128274;</div>
+        <h3>Parent-First Privacy</h3>
+        <p>Built on educational data privacy standards. Parent permission systems for all minors. Families control what's shared and with whom.</p>
+      </div>
+      <div class="vision-card reveal reveal-delay-3">
+        <div class="vision-icon">&#127942;</div>
+        <h3>All Levels Welcome</h3>
+        <p>MLS academies, ECNL, travel, and recreational. From the kid who just moved to town to the elite prospect going pro — one platform for everyone.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- REVENUE -->
+  <section id="revenue" class="reveal">
+    <div class="section-label">Revenue Model</div>
+    <h2 class="section-title">Three Revenue Streams</h2>
+    <p class="section-body">Free to join. Premium features to stand out. A business model that grows with the player base.</p>
+
+    <div class="revenue-grid">
+      <div class="revenue-card reveal reveal-delay-1">
+        <div class="phase-label">Stream 01</div>
+        <h3>Premium Profiles</h3>
+        <p>Players and families pay to boost visibility — like Instagram promotion. Tiered pricing: basic profile (free) vs. enhanced profile (featured placement, priority in search, video highlights pinned).</p>
+      </div>
+      <div class="revenue-card reveal reveal-delay-2">
+        <div class="phase-label">Stream 02</div>
+        <h3>Sponsor Advertising</h3>
+        <p>Thousands of players on one platform = valuable real estate for soccer brands, equipment companies, camps, and academies. Get the players first, sponsors follow.</p>
+      </div>
+      <div class="revenue-card reveal reveal-delay-3">
+        <div class="phase-label">Stream 03</div>
+        <h3>Club Data Access</h3>
+        <p>Clubs pay for premium search and filtering — find specific player types by position, age, location, and skill level. The data becomes the product.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ROADMAP -->
+  <section id="roadmap" class="reveal">
+    <div class="section-label">Roadmap</div>
+    <h2 class="section-title">From Concept to Launch</h2>
+    <p class="section-body">Development throughout 2026. Launch January 2027 — aligned with club recruitment cycles.</p>
+
+    <div class="timeline">
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-date">April 2026</div>
+        <div class="timeline-title">Discovery & Research</div>
+        <div class="timeline-desc">Validate with coaches, parents, and club directors. Map the competitive landscape. Define the MVP feature set. Lock in the brand and domain.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-date">May — July 2026</div>
+        <div class="timeline-title">MVP Build</div>
+        <div class="timeline-desc">Player profile creation, club directory, AI matching engine, parent permission system. Core platform built and functional. Internal testing with select players and coaches.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="timeline-date">August — October 2026</div>
+        <div class="timeline-title">Beta Launch</div>
+        <div class="timeline-desc">Open beta with Connecticut clubs and players. Coach Steve's network as the initial user base. Collect feedback, iterate on features, fix friction points. Begin onboarding clubs.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-4">
+        <div class="timeline-date">November — December 2026</div>
+        <div class="timeline-title">Scale & Prepare</div>
+        <div class="timeline-desc">Expand to neighboring states. Activate premium features and advertising model. Build marketing assets. Prepare for full public launch aligned with recruitment season.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-date">January 2027</div>
+        <div class="timeline-title">Public Launch</div>
+        <div class="timeline-desc">Full platform live. Aligned with the start of club recruitment cycles. Aggressive user acquisition campaign targeting players, parents, and clubs nationwide.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PARTNERSHIP -->
+  <section id="partnership" class="reveal">
+    <div class="section-label">Partnership</div>
+    <h2 class="section-title">Two People. One Mission.</h2>
+    <p class="section-body">This works because it combines two things that can't be faked: deep soccer knowledge and the technical ability to build it.</p>
+
+    <div class="partner-grid">
+      <div class="partner-card reveal reveal-delay-1">
+        <h3>Coach Steve</h3>
+        <ul class="partner-list">
+          <li>Years of coaching experience across competitive youth soccer</li>
+          <li>Deep relationships with clubs, coaches, and families in Connecticut</li>
+          <li>Understands the player journey — from rec to elite — firsthand</li>
+          <li>Knows the pain points because he's lived them</li>
+          <li>Industry credibility and trust with the soccer community</li>
+          <li>Brand vision: "One Ball One Dream"</li>
+        </ul>
+      </div>
+      <div class="partner-card reveal reveal-delay-2">
+        <h3>Brayan Tenesaca</h3>
+        <ul class="partner-list">
+          <li>Building AI-powered platforms — currently shipping tools for schools and leaders</li>
+          <li>Ed-tech experience with data privacy compliance for minors</li>
+          <li>Built marketplace platform (same architecture applies to soccer)</li>
+          <li>Full-stack capability: design, build, deploy, scale</li>
+          <li>Babson College — surrounded by entrepreneurship and business resources</li>
+          <li>Former player — understands the experience from the inside</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <h2 class="section-title">Let's Build This</h2>
+    <p class="section-body">The players deserve better. The families deserve better. The game deserves a platform that puts people first.</p>
+    <a href="mailto:brayan@nextgenerationlearners.com" class="btn-primary">Let's Talk</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">One Ball One Dream</div>
+    <p class="footer-sub">A proposal by Brayan Tenesaca & Coach Steve</p>
+  </footer>
+
+  <!-- SCROLL REVEAL -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
