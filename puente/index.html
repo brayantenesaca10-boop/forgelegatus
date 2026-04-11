@@ -491,194 +491,341 @@
       color: var(--dim);
     }
 
-    /* ===== PILLARS ===== */
-    .pillars {
+    /* ===== PEOPLE (human stories) ===== */
+    .people {
       padding: 10rem 4rem;
       max-width: 1080px;
       margin: 0 auto;
     }
 
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-    }
-
-    .pillar {
-      padding: 2.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border-light);
-      border-radius: 12px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .pillar:hover {
-      border-color: var(--accent-soft);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(176, 92, 47, 0.06);
-    }
-
-    .pillar-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--accent-bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .pillar-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--accent);
-    }
-
-    .pillar h3 {
+    .people h2 {
       font-family: 'Instrument Serif', serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: 0.75rem;
-      color: var(--text);
-    }
-
-    .pillar p {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    /* ===== PRICE ===== */
-    .price {
-      padding: 8rem 4rem;
-      text-align: center;
-    }
-
-    .price-amount {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(4rem, 10vw, 7rem);
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-
-    .price-note {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--text-body);
-    }
-
-    .price-perks {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .price-perk {
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .price-perk::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.5;
-    }
-
-    /* ===== WAITLIST ===== */
-    .waitlist {
-      padding: 10rem 4rem 6rem;
-      text-align: center;
-    }
-
-    .waitlist h2 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 400;
       letter-spacing: -0.02em;
-      line-height: 1.15;
       margin-bottom: 1rem;
     }
 
-    .waitlist h2 .italic {
+    .people h2 .italic {
       font-style: italic;
       color: var(--accent);
     }
 
-    .waitlist-sub {
+    .people-intro {
       font-size: 0.92rem;
       font-weight: 300;
       color: var(--muted);
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
+      max-width: 460px;
+      line-height: 1.75;
     }
 
-    .waitlist-form {
-      display: flex;
-      max-width: 420px;
-      margin: 0 auto;
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .person-card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
     }
 
-    .waitlist-form:focus-within {
-      border-color: var(--accent-soft);
-      box-shadow: 0 2px 20px rgba(176, 92, 47, 0.08);
+    .person-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
     }
 
-    .waitlist-form input {
-      flex: 1;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    .person-top {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .person-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.1rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .person-avatar.a1 { background: var(--accent); }
+    .person-avatar.a2 { background: #5B8C6A; }
+    .person-avatar.a3 { background: #6B7AA1; }
+
+    .person-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .person-from {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-top: 0.15rem;
+    }
+
+    .person-story {
       font-size: 0.88rem;
       font-weight: 300;
-      padding: 1rem 1.5rem;
-      background: transparent;
-      border: none;
-      color: var(--text);
-      outline: none;
+      color: var(--text-body);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 1.5rem;
     }
 
-    .waitlist-form input::placeholder { color: var(--dim); }
+    .person-interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
 
-    .waitlist-form button {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.7rem;
+    .person-tag {
+      font-size: 0.62rem;
       font-weight: 500;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 1rem 2rem;
+      color: var(--muted);
+      padding: 0.35rem 0.8rem;
+      background: var(--bg);
+      border-radius: 100px;
+    }
+
+    .person-match {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .match-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .match-text {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    /* ===== FOUNDING COMMUNITY ===== */
+    .founding {
+      padding: 8rem 4rem;
+      background: var(--bg-warm);
+    }
+
+    .founding-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .founding-text h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .founding-text h2 .italic {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .founding-text p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--text-body);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .founding-counter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .counter-ring {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .counter-ring::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--accent);
+      border-right-color: var(--accent);
+      transform: rotate(-45deg);
+    }
+
+    .counter-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .counter-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .counter-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ===== PRE-ORDER ===== */
+    .preorder {
+      padding: 10rem 4rem;
+      text-align: center;
+    }
+
+    .preorder-label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .preorder h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .preorder h2 .italic {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .preorder-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-body);
+      margin-bottom: 0.5rem;
+    }
+
+    .preorder-price {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin: 2rem 0;
+    }
+
+    .preorder-lock {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--accent);
+      background: var(--accent-bg);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 2.5rem;
+    }
+
+    .preorder-lock svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .preorder-btn {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 1.1rem 3.5rem;
       background: var(--accent);
       color: white;
       border: none;
-      border-radius: 0 100px 100px 0;
+      border-radius: 100px;
+      text-decoration: none;
       cursor: pointer;
-      transition: background 0.3s ease;
-      white-space: nowrap;
+      transition: all 0.3s ease;
     }
 
-    .waitlist-form button:hover { background: var(--accent-soft); }
+    .preorder-btn:hover {
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(176, 92, 47, 0.2);
+    }
 
-    .waitlist-fine {
-      margin-top: 1rem;
+    .preorder-includes {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .preorder-include {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .preorder-include svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent-soft);
+    }
+
+    .preorder-fine {
+      margin-top: 2rem;
       font-size: 0.68rem;
       color: var(--dim);
     }
@@ -764,18 +911,18 @@
 
       .moment { padding: 6rem 1.5rem; }
 
-      .pillars { padding: 6rem 1.5rem; }
-      .pillars-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .people { padding: 6rem 1.5rem; }
+      .people-grid { grid-template-columns: 1fr; }
 
-      .price { padding: 5rem 1.5rem; }
-      .price-perks { gap: 1rem; }
-
-      .waitlist { padding: 6rem 1.5rem 4rem; }
-      .waitlist-form {
-        flex-direction: column;
-        border-radius: 12px;
+      .founding { padding: 5rem 1.5rem; }
+      .founding-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
       }
-      .waitlist-form button { border-radius: 0 0 12px 12px; padding: 1.1rem; }
+      .founding-counter { order: -1; }
+
+      .preorder { padding: 6rem 1.5rem; }
+      .preorder-includes { gap: 1rem; }
 
       footer {
         padding: 2rem 1.5rem;
@@ -797,7 +944,7 @@
 
   <nav id="nav">
     <a href="#" class="nav-wordmark">Puente</a>
-    <a href="#join" class="nav-cta">Get Early Access</a>
+    <a href="#join" class="nav-cta">Pre-order</a>
   </nav>
 
   <!-- HERO -->
@@ -807,7 +954,7 @@
     <h1>One tap.<span class="line2">Every story.</span></h1>
     <p class="hero-sub">A ring that carries your voice across every language barrier. Tap. Connect. Be understood.</p>
     <div class="hero-cta-row">
-      <a href="#join" class="btn-main">Join the Waitlist</a>
+      <a href="#join" class="btn-main">Pre-order now</a>
       <a href="#how" class="btn-ghost">See how it works</a>
     </div>
     <div class="hero-scroll">
@@ -916,74 +1063,130 @@
     </div>
   </section>
 
-  <!-- PILLARS -->
-  <section class="pillars reveal">
-    <p class="section-label">What this makes possible</p>
-    <div class="pillars-grid">
-      <div class="pillar">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-            <line x1="12" y1="19" x2="12" y2="23"/>
-          </svg>
+  <!-- PEOPLE OF PUENTE -->
+  <section class="people reveal">
+    <p class="section-label">People of Puente</p>
+    <h2>Real people. <span class="italic">Real stories.</span></h2>
+    <p class="people-intro">Every ring carries someone's story. Here are a few of the people who will be heard for the first time.</p>
+    <div class="people-grid">
+      <div class="person-card">
+        <div class="person-top">
+          <div class="person-avatar a1">M</div>
+          <div>
+            <div class="person-name">Maria Gutierrez</div>
+            <div class="person-from">Guayaquil, Ecuador - 12 years in Danbury</div>
+          </div>
         </div>
-        <h3>Your voice, every language</h3>
-        <p>AI clones your voice and speaks your story in the listener's language. Not a translation. Your warmth, your tone, your words.</p>
+        <p class="person-story">"I do hair for women on my block. Half of them don't know I also raised two boys alone, built a business from nothing, and still send money home every month. They've never asked - because we can't talk."</p>
+        <div class="person-interests">
+          <span class="person-tag">Hair styling</span>
+          <span class="person-tag">Cooking</span>
+          <span class="person-tag">Soccer mom</span>
+          <span class="person-tag">Faith</span>
+        </div>
+        <div class="person-match">
+          <span class="match-dot"></span>
+          <span class="match-text">3 shared interests with you</span>
+        </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="2"/>
-            <circle cx="6" cy="6" r="1.5"/>
-            <circle cx="18" cy="8" r="1.5"/>
-            <circle cx="7" cy="18" r="1.5"/>
-            <circle cx="18" cy="17" r="1.5"/>
-            <line x1="7.5" y1="7.5" x2="10" y2="10"/>
-            <line x1="14" y1="10.5" x2="16.5" y2="8.5"/>
-            <line x1="10" y1="13.5" x2="7.5" y2="16.5"/>
-            <line x1="14" y1="13.5" x2="16.5" y2="15.5"/>
-          </svg>
+      <div class="person-card">
+        <div class="person-top">
+          <div class="person-avatar a2">C</div>
+          <div>
+            <div class="person-name">Carlos Mendes</div>
+            <div class="person-from">Minas Gerais, Brazil - 5 years in Danbury</div>
+          </div>
         </div>
-        <h3>See what connects you</h3>
-        <p>Shared interests, roots, and passions - mapped the moment you tap. You instantly see why this person matters.</p>
+        <p class="person-story">"I'm a carpenter. I build kitchens, decks, furniture. But every job I've gotten has been through another Brazilian. The American families on my street don't know what I do - because I don't have the English to tell them."</p>
+        <div class="person-interests">
+          <span class="person-tag">Carpentry</span>
+          <span class="person-tag">Soccer</span>
+          <span class="person-tag">Music</span>
+          <span class="person-tag">Grilling</span>
+        </div>
+        <div class="person-match">
+          <span class="match-dot"></span>
+          <span class="match-text">2 shared interests with you</span>
+        </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
+      <div class="person-card">
+        <div class="person-top">
+          <div class="person-avatar a3">S</div>
+          <div>
+            <div class="person-name">Sarah Mitchell</div>
+            <div class="person-from">Born in Danbury - lifelong resident</div>
+          </div>
         </div>
-        <h3>Find your people</h3>
-        <p>Who nearby shares your hometown? Your craft? Your faith? Your community grows with every tap. Organic, real, and yours.</p>
+        <p class="person-story">"My neighbors are from five different countries. I wave at them every morning but I've never had a real conversation. I want to know who they are. I just don't know how to start."</p>
+        <div class="person-interests">
+          <span class="person-tag">Teaching</span>
+          <span class="person-tag">Gardening</span>
+          <span class="person-tag">Book club</span>
+          <span class="person-tag">Community</span>
+        </div>
+        <div class="person-match">
+          <span class="match-dot"></span>
+          <span class="match-text">1 shared interest with you</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PRICE -->
-  <section class="price reveal">
-    <p class="price-amount">$29</p>
-    <p class="price-note">One ring. No subscription. Your story, your voice, forever.</p>
-    <div class="price-perks">
-      <span class="price-perk">Free voice profile</span>
-      <span class="price-perk">Free translations</span>
-      <span class="price-perk">Free community</span>
-      <span class="price-perk">No battery ever</span>
+  <!-- FOUNDING COMMUNITY -->
+  <section class="founding reveal">
+    <div class="founding-inner">
+      <div class="founding-text">
+        <p class="section-label">Founding community</p>
+        <h2>Be one of the <span class="italic">first 100</span></h2>
+        <p>Puente starts in Danbury, CT - one of the most culturally rich small cities in America. Dominicans, Ecuadorians, Brazilians, Haitians, Americans - all living side by side.</p>
+        <p>The first 100 rings aren't just a product launch. They're the beginning of a community that refuses to let language be the reason people stay strangers.</p>
+        <p>Every founding member gets their name in the app as an original bridge builder. You're not buying a ring. You're starting a movement.</p>
+      </div>
+      <div class="founding-counter">
+        <div class="counter-ring">
+          <span class="counter-number">100</span>
+          <span class="counter-label">Founding Rings</span>
+        </div>
+        <span class="counter-note">Danbury, CT - May 2026</span>
+      </div>
     </div>
   </section>
 
-  <!-- WAITLIST -->
-  <section class="waitlist" id="join">
-    <h2>First 100 rings.<br><span class="italic">May 2026.</span></h2>
-    <p class="waitlist-sub">Be part of the first community to connect beyond language.</p>
-    <form class="waitlist-form" onsubmit="handleWaitlist(event)">
-      <input type="email" placeholder="Your email" required aria-label="Email address" />
-      <button type="submit">Join</button>
-    </form>
-    <p class="waitlist-fine">No spam. Just your spot in line.</p>
+  <!-- PRE-ORDER -->
+  <section class="preorder reveal" id="join">
+    <p class="preorder-label">Pre-order now</p>
+    <h2>Lock in your <span class="italic">Puente ring</span></h2>
+    <p class="preorder-sub">First 100 rings ship May 2026. Pre-order guarantees your spot and locks in the price.</p>
+    <div class="preorder-price">$29</div>
+    <div class="preorder-lock">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      Price locked in - guaranteed $29 at launch
+    </div>
+    <br>
+    <!-- REPLACE THIS URL WITH YOUR STRIPE PAYMENT LINK -->
+    <a href="https://buy.stripe.com/YOUR_STRIPE_LINK_HERE" class="preorder-btn" target="_blank" rel="noopener">Pre-order your ring</a>
+    <div class="preorder-includes">
+      <span class="preorder-include">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Zirconia ceramic ring
+      </span>
+      <span class="preorder-include">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Voice profile in your language
+      </span>
+      <span class="preorder-include">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        AI translation
+      </span>
+      <span class="preorder-include">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Community access
+      </span>
+    </div>
+    <p class="preorder-fine">No subscription. No hidden fees. Ships to your door.</p>
   </section>
 
   <footer>
@@ -1008,17 +1211,12 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    function handleWaitlist(e) {
-      e.preventDefault();
-      const input = e.target.querySelector('input');
-      const btn = e.target.querySelector('button');
-      input.value = '';
-      btn.textContent = "You're in";
-      btn.style.background = '#2D8A4E';
-      setTimeout(() => {
-        btn.textContent = 'Join';
-        btn.style.background = '';
-      }, 3000);
+    // Pre-order button click tracking (optional)
+    const preorderBtn = document.querySelector('.preorder-btn');
+    if (preorderBtn) {
+      preorderBtn.addEventListener('click', () => {
+        console.log('Pre-order clicked');
+      });
     }
   </script>
 
