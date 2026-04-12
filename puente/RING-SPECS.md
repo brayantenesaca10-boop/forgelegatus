@@ -11,12 +11,12 @@ The ring is a PLAIN BAND. No screen, no buttons, no visible tech. It looks like 
 ### Core Specs
 
 - Material: Zirconia ceramic (ZrO2)
-- Color: Matte black
+- Color: Evaluating both matte black and glossy black
 - Band width: 5mm (thin, jewelry-like)
 - Band thickness: 2.5-3mm
-- Edge: Single beveled edge on one side (angled cut, not rounded)
+- Edge: Standard beveled band with beveled edges on both sides
 - Exterior: Completely clean. No logos, no text, no markings
-- Interior: "PUENTE" engraved in small caps, centered
+- Interior: "PUENTE" engraved in small caps, centered (laser engraving)
 - NFC chip: NTAG216 (888 bytes), sealed inside the ceramic
 - Waterproof: Fully sealed, no exposed chip or antenna
 
@@ -31,49 +31,13 @@ The ring is a PLAIN BAND. No screen, no buttons, no visible tech. It looks like 
 | XL | 22.0mm | 69.1mm | 10 |
 | **Total** | | | **100** |
 
-## Ring Design Ideas (Use These Prompts in Midjourney/ChatGPT/DALL-E)
-
-### Idea 1: Clean Minimal Band
-The core design. Plain matte black ceramic band, one beveled edge.
-
-Prompt for image generation:
-"Product photography of a matte black zirconia ceramic ring on dark stone surface, thin 5mm band, single beveled edge, luxury jewelry photography, minimal design, no logos, dramatic side lighting, shallow depth of field, 4k"
-
-### Idea 2: Inner Gold Accent
-Same matte black exterior, but the inner surface has a gold-tone coating. Hidden luxury - only visible when you take it off.
-
-Prompt for image generation:
-"Product photography of a matte black ceramic ring with gold interior, ring tilted to show inner gold surface, dark background, luxury jewelry, dramatic lighting, 4k"
-
-### Idea 3: Brushed Texture Band
-Matte black with a subtle brushed/satin texture on the exterior. Catches light differently at angles. Feels tactile.
-
-Prompt for image generation:
-"Product photography of a matte black ceramic ring with brushed satin texture, thin band on dark velvet, luxury jewelry, close-up detail shot showing texture, moody lighting, 4k"
-
-### Idea 4: Faceted Band
-Instead of a round exterior, the ring has a subtle flat facet on top (like a D-shape cross section). Modern, architectural.
-
-Prompt for image generation:
-"Product photography of a matte black ceramic ring with flat top faceted design, D-shape cross section, thin band, minimal luxury jewelry on dark background, architectural design, 4k"
-
-### Idea 5: Dual Finish
-Top half of the band is polished glossy black, bottom half is matte. Creates a visual split. Eye-catching without being loud.
-
-Prompt for image generation:
-"Product photography of a black ceramic ring with half polished half matte finish, luxury two-tone design, thin band on dark stone, dramatic lighting showing contrast between finishes, 4k"
-
-### Idea 6: Comfort Fit Interior
-Standard exterior but the inside has a domed/comfort-fit curve (not flat). More comfortable for all-day wear. This is what quality ring brands do.
-
-Note: Most ceramic NFC rings already have comfort fit. Confirm with supplier.
-
 ## What Suppliers Need From You
 
 1. The specs above (material, dimensions, chip type)
-2. A reference image of the style you want (generate with Midjourney/DALL-E)
-3. The inner engraving text: "PUENTE" (ask if they can do it at 100 MOQ)
+2. A reference image of the style you want (the Puente Ring reference image)
+3. The inner engraving text: "PUENTE" (laser engraved)
 4. Size distribution (the table above)
+5. Specify both matte and glossy samples for comparison
 
 ## What You Do NOT Need
 
@@ -88,8 +52,14 @@ When talking to suppliers, use these terms so they understand exactly what you w
 
 - "Plain band ring" = a ring with no stones, no design features, just a band
 - "Comfort fit" = the inside is slightly domed, not flat (more comfortable)
-- "Beveled edge" = one edge is cut at an angle instead of rounded
+- "Beveled edge" = edges cut at an angle (both sides)
 - "Matte finish" = not shiny, not glossy, a soft non-reflective surface
+- "Glossy finish" = polished, reflective, mirror-like surface
 - "NTAG216" = the specific NFC chip model (they will know this)
 - "Wet inlay" = the NFC antenna + chip assembly sealed inside the ring
 - "Inner engraving" = text engraved on the inside surface of the ring
+- "Laser engraving" = using a laser to etch text into the ceramic
+
+## Design Note
+
+The ring is the first product of a visibility company. It is not the company. The ring should feel like something you'd wear to be seen - not a gadget, not tech. It should feel like it belongs on the hand of someone who has been overlooked their whole life and is about to be heard for the first time.

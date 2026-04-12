@@ -1,5 +1,9 @@
 # Puente - Cost Breakdown & Options
 
+## Price Point: $49
+
+Puente is a visibility product, not a tech gadget. $49 positions it as something worth having, not something cheap to try. At $29 people ask "is this legit?" At $49 people think "this is a real product." Someone already confirmed $50 is nothing. Trust the signal.
+
 ## Option A: Full Launch (Premium Experience) - $1,500-2,200
 
 Everything in the roadmap. Rings, packaging, app, legal, branding.
@@ -20,18 +24,11 @@ Everything in the roadmap. Rings, packaging, app, legal, branding.
 | Trademark filing | $250-350 | Not yet |
 | **Total** | **$1,500-2,200** | |
 
-### What you get
-- Premium unboxing experience
-- Native iOS + Android app
-- Legal protection from day 1
-- Full brand identity
-- Launch event momentum
-
 ### Revenue
-- 100 rings x $29 = $2,900
+- 100 rings x $49 = $4,900
 - COGS per ring (ring + box + card + sticker): ~$7-9
-- Gross profit: ~$2,000-2,200
-- Net after all costs: **$700-1,400 profit**
+- Gross profit: ~$3,900-4,200
+- Net after all costs: **$2,700-3,400 profit**
 
 ### Risk
 - You spend $1,500-2,200 before selling a single ring
@@ -42,7 +39,7 @@ Everything in the roadmap. Rings, packaging, app, legal, branding.
 
 ## Option B: Lean Launch (MVP) - $450-650
 
-Only what you NEED to sell rings on May 7. Cut everything that doesn't directly put a ring in someone's hand.
+Only what you NEED to sell rings. Cut everything that doesn't directly put a ring in someone's hand.
 
 | Item | Cost | Notes |
 |---|---|---|
@@ -64,28 +61,20 @@ Only what you NEED to sell rings on May 7. Cut everything that doesn't directly 
 | LLC | $120 | Sell as sole proprietor for the first batch. Form LLC before batch 2. |
 | Trademark filing | $250-350 | Same - after revenue. |
 
-### What you get
-- 100 rings, programmed, in velvet bags
-- Web app with profiles, interests, voice, connections
-- Working product you can sell for $29
-
 ### Revenue
-- 100 rings x $29 = $2,900
+- 100 rings x $49 = $4,900
 - COGS per ring (ring + bag): ~$4.50-6.50
-- Gross profit: ~$2,250-2,450
-- Net after all costs: **$2,250-2,450 profit**
+- Gross profit: ~$4,250-4,450
+- Net after all costs: **$4,250-4,450 profit**
 
 ### Risk
-- No legal protection (low risk at this scale, nobody sues over 100 rings)
-- No native app (web app works fine - Ping doesn't even have an app)
+- No legal protection (low risk at this scale)
+- No native app (web app works fine)
 - Less premium unboxing (but velvet bag still feels nice)
-- No trademark filed (file once you know the name sticks and revenue is real)
 
 ---
 
 ## Option C: Ultra Lean (Test with 50 rings) - $250-350
-
-You're not sure this will sell. Test with half the inventory.
 
 | Item | Cost | Notes |
 |---|---|---|
@@ -94,21 +83,11 @@ You're not sure this will sell. Test with half the inventory.
 | Velvet bags (25 pack) | $5 | Amazon |
 | **Total** | **$217-317** | |
 
-### What you get
-- 50 rings to test demand
-- If they sell out, you have revenue to fund the next 100
-- If they don't, you lost $250 not $2,200
-
 ### Revenue
-- 50 rings x $29 = $1,450
+- 50 rings x $49 = $2,450
 - COGS per ring: ~$4.50-6.50
-- Gross profit: ~$1,125-1,225
-- Net after all costs: **$1,125-1,225 profit**
-
-### Risk
-- Higher per-unit cost (suppliers charge more for smaller MOQ)
-- Some suppliers won't do 50 units - may need to find different supplier
-- You might sell out fast and have to wait 2-4 weeks for restock
+- Gross profit: ~$2,125-2,225
+- Net after all costs: **$2,125-2,225 profit**
 
 ---
 
@@ -118,51 +97,26 @@ You're not sure this will sell. Test with half the inventory.
 |---|---|---|---|
 | **Upfront cost** | $1,500-2,200 | $412-612 | $217-317 |
 | **Rings** | 100 | 100 | 50 |
-| **Revenue** | $2,900 | $2,900 | $1,450 |
-| **Net profit** | $700-1,400 | $2,250-2,450 | $1,125-1,225 |
-| **Profit margin** | 32-48% | 78-84% | 78-84% |
+| **Revenue** | $4,900 | $4,900 | $2,450 |
+| **Net profit** | $2,700-3,400 | $4,250-4,450 | $2,125-2,225 |
+| **Profit margin** | 55-69% | 87-91% | 87-91% |
 | **Native app** | Yes | No (web only) | No (web only) |
 | **Packaging** | Magnetic box | Velvet bag | Velvet bag |
 | **Legal** | Full (LLC + TM) | None | None |
-| **Launch event** | Yes | No (sell at existing events) | No |
-| **Custom sound** | Yes | Stock sound | Stock sound |
-| **Break-even point** | Sell 52-76 rings | Sell 15-22 rings | Sell 8-11 rings |
+| **Break-even point** | Sell 31-45 rings | Sell 9-13 rings | Sell 5-7 rings |
 | **Risk if nobody buys** | Lose $1,500-2,200 | Lose $412-612 | Lose $217-317 |
-
----
-
-## Predicted Outcomes
-
-### If you go Option A (Full Launch)
-- You look professional from day 1
-- BUT you need to sell 52-76 rings just to break even
-- The legal costs are premature - you don't need a trademark to sell 100 rings
-- The native app won't be approved by Apple in time anyway (review takes 1-7 days, often rejected first time)
-- You're spending money to feel ready instead of spending money to learn
-
-### If you go Option B (Lean MVP) - RECOMMENDED
-- You break even after selling just 15-22 rings. That's one church event.
-- You keep $2,250-2,450 in profit to fund: native app, premium packaging, legal, and batch 2
-- The web app does everything the native app does except NFC reading (but the ring handles that - it opens the URL automatically)
-- You test demand with real money before investing in legal and branding
-- If all 100 sell, use the profit to do Option A properly for batch 2
-
-### If you go Option C (Ultra Lean)
-- Lowest risk but you might sell out in one weekend and have nothing to sell for 3-4 weeks
-- Good if you're genuinely unsure about demand
-- Bad if you're confident - you leave money on the table waiting for restock
 
 ---
 
 ## The Play: Option B Then Upgrade
 
-**Batch 1 (May 7): Option B - $450-650**
+**Batch 1: Option B - $450-650**
 - 100 rings in velvet bags
 - Web app only
-- Sell at churches, soccer leagues, barbershops
-- Goal: sell all 100, pocket ~$2,300
+- Sell at churches, soccer leagues, barbershops, schools
+- Goal: sell all 100, pocket ~$4,350
 
-**Batch 2 (June): Upgrade to Option A with batch 1 profits**
+**Batch 2: Upgrade to Option A with batch 1 profits**
 - Order 200-500 rings (lower per-unit cost at scale)
 - Add magnetic boxes with debossed logo
 - File LLC + trademark
@@ -177,13 +131,15 @@ This way you never risk more than $650 of your own money. Everything after that 
 
 ## Per-Ring Economics at Scale
 
-| Batch Size | Ring Cost | Packaging | COGS/Ring | Sell at $29 | Profit/Ring |
-|---|---|---|---|---|---|
-| 50 rings | $4-6 | $0.10 (bag) | $4.10-6.10 | $29 | $22.90-24.90 |
-| 100 rings | $3-5 | $0.10 (bag) | $3.10-5.10 | $29 | $23.90-25.90 |
-| 100 rings | $3-5 | $1.50 (box) | $4.50-6.50 | $29 | $22.50-24.50 |
-| 250 rings | $2-4 | $1.00 (box) | $3.00-5.00 | $29 | $24.00-26.00 |
-| 500 rings | $1.50-3 | $0.80 (box) | $2.30-3.80 | $29 | $25.20-26.70 |
-| 1000 rings | $1-2.50 | $0.60 (box) | $1.60-3.10 | $29 | $25.90-27.40 |
+| Batch Size | Ring Cost | Packaging | COGS/Ring | Sell at $49 | Profit/Ring | Margin |
+|---|---|---|---|---|---|---|
+| 50 rings | $4-6 | $0.10 (bag) | $4.10-6.10 | $49 | $42.90-44.90 | 88-92% |
+| 100 rings | $3-5 | $0.10 (bag) | $3.10-5.10 | $49 | $43.90-45.90 | 90-94% |
+| 100 rings | $3-5 | $1.50 (box) | $4.50-6.50 | $49 | $42.50-44.50 | 87-91% |
+| 250 rings | $2-4 | $1.00 (box) | $3.00-5.00 | $49 | $44.00-46.00 | 90-94% |
+| 500 rings | $1.50-3 | $0.80 (box) | $2.30-3.80 | $49 | $45.20-46.70 | 92-95% |
+| 1000 rings | $1-2.50 | $0.60 (box) | $1.60-3.10 | $49 | $45.90-47.40 | 94-97% |
 
-The more you sell, the cheaper each ring gets. At 1000 units you're making $26+ per ring.
+## Note on Tariffs
+
+Current tariff on NFC rings from China is 35%. Factor this into landed cost calculations. Get full landed cost breakdown from supplier (ring cost + shipping + duties).
