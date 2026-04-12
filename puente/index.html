@@ -289,21 +289,35 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      perspective: 1000px;
     }
 
-    .ring-svg {
-      width: 220px;
-      height: 220px;
+    .ring-3d {
+      width: 75%;
+      max-width: 340px;
+      animation: ringFloat 6s ease-in-out infinite;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+      transition: transform 0.3s ease;
     }
 
-    .ring-outer { fill: none; stroke: var(--text); stroke-width: 14; opacity: 0.12; }
-    .ring-mid { fill: none; stroke: var(--text); stroke-width: 10; opacity: 0.08; }
-    .ring-shine {
-      fill: none;
-      stroke: url(#warmShine);
-      stroke-width: 14;
-      stroke-linecap: round;
-      opacity: 0.4;
+    .ring-image:hover .ring-3d {
+      animation-play-state: paused;
+      transform: rotateY(-15deg) rotateX(5deg) scale(1.05);
+    }
+
+    @keyframes ringFloat {
+      0%, 100% {
+        transform: rotateY(0deg) rotateX(0deg) translateY(0px);
+      }
+      25% {
+        transform: rotateY(8deg) rotateX(3deg) translateY(-8px);
+      }
+      50% {
+        transform: rotateY(-5deg) rotateX(-2deg) translateY(-4px);
+      }
+      75% {
+        transform: rotateY(-8deg) rotateX(2deg) translateY(-10px);
+      }
     }
 
     .ring-tag {
@@ -974,19 +988,7 @@
   <section class="ring-section reveal">
     <div class="ring-container">
       <div class="ring-image">
-        <svg class="ring-svg" viewBox="0 0 220 220">
-          <defs>
-            <linearGradient id="warmShine" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="transparent" />
-              <stop offset="35%" stop-color="rgba(176,92,47,0.25)" />
-              <stop offset="55%" stop-color="rgba(201,122,79,0.15)" />
-              <stop offset="100%" stop-color="transparent" />
-            </linearGradient>
-          </defs>
-          <circle class="ring-outer" cx="110" cy="110" r="88" />
-          <circle class="ring-mid" cx="110" cy="110" r="66" />
-          <circle class="ring-shine" cx="110" cy="110" r="88" stroke-dasharray="70 500" stroke-dashoffset="-20" />
-        </svg>
+        <img src="ring.png" alt="Puente Ring - Black Zirconia Ceramic" class="ring-3d" />
         <span class="ring-tag">Zirconia Ceramic / Black</span>
       </div>
       <div class="ring-info">
