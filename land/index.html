@@ -284,14 +284,9 @@
     font-style: italic;
     font-size: 19px;
     color: var(--cream);
-    margin: 0 0 6px;
+    margin: 0;
     letter-spacing: 0.02em;
-  }
-  .hero-sigil .gloss {
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
+    text-align: center;
   }
 
   /* ---------- Section base ---------- */
@@ -656,7 +651,7 @@
     <span class="brand-mark" aria-hidden="true">
       <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 2 L28 8 V17 C28 23.5 22.5 28.5 16 30 C9.5 28.5 4 23.5 4 17 V8 Z" stroke="#C49545" stroke-width="1.4" fill="rgba(196,149,69,0.08)"/>
-        <path d="M16 10 V22 M11 16 H21" stroke="#E0B765" stroke-width="1.2" stroke-linecap="round"/>
+        <text x="16" y="22" text-anchor="middle" fill="#E0B765" font-family="Playfair Display, Georgia, serif" font-size="15" font-weight="500">C</text>
       </svg>
     </span>
     <span class="brand-word"><span class="latin">Custos</span>Practice</span>
@@ -677,7 +672,7 @@
         Sovereign AI, kept inside the walls of the people <span class="accent">who are responsible for it.</span>
       </h1>
       <p class="hero-sub reveal">
-        Custos is a small practice that helps schools, parishes, and private institutions design, build, and operate AI inside their own cloud. The work lives in your tenant, on your laptops, under your name.
+        Custos is a small practice that helps schools, foundations, and private institutions design, build, and operate AI inside their own cloud. The work lives in your tenant, on your laptops, under your name.
       </p>
       <div class="hero-ctas reveal">
         <a href="#begin" class="btn btn-primary">
@@ -692,26 +687,24 @@
 
     <div class="hero-sigil reveal" aria-hidden="true">
       <div class="crest">
-        <!-- Guardian sigil: shield with lily (St. Joseph) -->
+        <!-- Inscription mark: shield with CVSTOS / MMXXVI -->
         <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M100 12 L180 42 V120 C180 170 145 210 100 226 C55 210 20 170 20 120 V42 Z"
                 stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.85"/>
           <path d="M100 28 L168 52 V120 C168 162 138 196 100 210 C62 196 32 162 32 120 V52 Z"
                 stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.5"/>
-          <!-- Lily / fleur-de-lys abstracted -->
-          <path d="M100 70 C100 70 88 92 88 110 C88 124 94 132 100 134 C106 132 112 124 112 110 C112 92 100 70 100 70 Z"
-                fill="currentColor" opacity="0.9"/>
-          <path d="M100 134 C92 130 76 124 70 138 C66 148 72 158 84 158 C92 158 98 152 100 144"
-                stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-          <path d="M100 134 C108 130 124 124 130 138 C134 148 128 158 116 158 C108 158 102 152 100 144"
-                stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-          <line x1="80" y1="150" x2="120" y2="150" stroke="currentColor" stroke-width="1.2" opacity="0.7"/>
-          <circle cx="100" cy="50" r="3" fill="currentColor"/>
+          <text x="100" y="120" text-anchor="middle" fill="currentColor"
+                font-family="Playfair Display, Georgia, serif" font-size="26" font-weight="500"
+                letter-spacing="6">CVSTOS</text>
+          <line x1="68" y1="138" x2="132" y2="138" stroke="currentColor" stroke-width="0.8" opacity="0.55"/>
+          <text x="100" y="162" text-anchor="middle" fill="currentColor"
+                font-family="Playfair Display, Georgia, serif" font-style="italic" font-size="13"
+                letter-spacing="4" opacity="0.75">MMXXVI</text>
+          <circle cx="100" cy="50" r="2.5" fill="currentColor" opacity="0.8"/>
         </svg>
       </div>
       <div class="crest-meta">
         <p class="latin-line">Custos domus.</p>
-        <span class="gloss">Guardian of the household</span>
       </div>
     </div>
   </div>
@@ -882,13 +875,13 @@
   <div class="posture-inner">
     <svg class="posture-mark reveal" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M32 4 L56 14 V32 C56 46 45 56 32 60 C19 56 8 46 8 32 V14 Z" stroke="currentColor" stroke-width="1.2" fill="rgba(196,149,69,0.08)"/>
-      <path d="M32 20 V44 M22 32 H42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <text x="32" y="42" text-anchor="middle" fill="currentColor" font-family="Playfair Display, Georgia, serif" font-size="26" font-weight="500">C</text>
     </svg>
     <p class="posture-quote reveal">
-      "<span class="italic">Custos</span> means guardian. The name is borrowed from St. Joseph, the keeper of the household."
+      "A guardian leaves the <span class="italic">house</span> stronger than it was found."
     </p>
     <p class="posture-body reveal">
-      The work follows from the name. Protect what is sacred to the institutions that built their people, and leave the people stronger than you found them. AI belongs inside the walls of the ones who answer to its outcomes.
+      Custos is built for institutions that intend to outlast their software. The agents stay in the tenant you already own. The local assistant stays on the laptops of the people who carry the weight. The prompts stay in a library your team can read, edit, and outlast us with.
     </p>
     <div class="posture-attribution reveal">The practice</div>
   </div>
@@ -920,11 +913,11 @@
     <div class="foot-brand">
       <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M16 2 L28 8 V17 C28 23.5 22.5 28.5 16 30 C9.5 28.5 4 23.5 4 17 V8 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
-        <path d="M16 10 V22 M11 16 H21" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <text x="16" y="22" text-anchor="middle" fill="currentColor" font-family="Playfair Display, Georgia, serif" font-size="14" font-weight="500">C</text>
       </svg>
       <span>Custos Practice</span>
     </div>
-    <div class="foot-meta">A Catholic-founded AI practice. Built quietly.</div>
+    <div class="foot-meta">An independent practice. Built quietly.</div>
     <div><a href="mailto:brayantenesaca10@gmail.com">brayantenesaca10@gmail.com</a></div>
   </div>
 </footer>
