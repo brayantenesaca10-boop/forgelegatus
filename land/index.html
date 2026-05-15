@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Custos Practice - Sovereign AI for institutions built to last</title>
+<meta name="description" content="Custos is a small AI practice that helps schools and private institutions design, build, and operate sovereign AI inside their own cloud tenant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #0A1322;
+    --navy: #0F1A2E;
+    --navy-soft: #182742;
+    --parchment: #F6F1E4;
+    --parchment-soft: #EFE7D2;
+    --cream: #F5EFE0;
+    --cream-dim: #C9C0AB;
+    --gold: #C49545;
+    --gold-bright: #E0B765;
+    --gold-deep: #8C661F;
+    --ink: #0A1322;
+    --ink-soft: #1E2A40;
+    --rule: rgba(196, 149, 69, 0.28);
+    --rule-faint: rgba(245, 239, 224, 0.10);
+    --glass: rgba(245, 239, 224, 0.04);
+    --glass-strong: rgba(245, 239, 224, 0.07);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--navy-deep);
+    color: var(--cream);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--gold); color: var(--navy-deep); }
+
+  a { color: var(--gold-bright); text-decoration: none; }
+  a:hover { color: var(--cream); }
+
+  .serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; }
+  .italic { font-style: italic; }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .eyebrow-rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .eyebrow-rule::before {
+    content: "";
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  /* ---------- Nav ---------- */
+  nav.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: linear-gradient(180deg, rgba(10,19,34,0.72) 0%, rgba(10,19,34,0.0) 100%);
+    transition: background 240ms ease, padding 240ms ease;
+  }
+  nav.top .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--cream);
+  }
+  nav.top .brand-mark {
+    width: 28px; height: 28px;
+    display: inline-block;
+  }
+  nav.top .brand-word {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    letter-spacing: 0.06em;
+  }
+  nav.top .brand-word .latin {
+    color: var(--gold);
+    font-style: italic;
+    margin-right: 6px;
+  }
+  nav.top .nav-cta {
+    border: 1px solid var(--rule);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    background: rgba(245, 239, 224, 0.02);
+    transition: all 240ms ease;
+    cursor: pointer;
+  }
+  nav.top .nav-cta:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+    background: rgba(196, 149, 69, 0.08);
+  }
+
+  /* ---------- Hero ---------- */
+  section.hero {
+    min-height: 100vh;
+    position: relative;
+    padding: 160px 40px 100px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 80% 60% at 75% 30%, rgba(196,149,69,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 80%, rgba(24,39,66,0.6), transparent 60%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  }
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.35;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .hero-orb {
+    position: absolute;
+    width: 520px; height: 520px;
+    right: -120px; top: 80px;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(224,183,101,0.22), rgba(196,149,69,0.06) 45%, transparent 65%);
+    filter: blur(40px);
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-40px, 30px); }
+  }
+
+  .hero-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hero-copy .eyebrow-rule { margin-bottom: 26px; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(38px, 5.4vw, 76px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin: 0 0 28px;
+    color: var(--cream);
+  }
+  .hero-title .accent {
+    font-style: italic;
+    color: var(--gold-bright);
+    font-weight: 400;
+  }
+  .hero-sub {
+    max-width: 540px;
+    font-size: 18px;
+    color: rgba(245,239,224,0.78);
+    margin: 0 0 44px;
+    line-height: 1.65;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: 2px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 240ms ease;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+  .btn-primary:hover {
+    background: var(--gold-bright);
+    color: var(--navy-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px -12px rgba(196,149,69,0.6);
+  }
+  .btn-ghost {
+    color: var(--cream);
+    border-color: var(--rule);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+  .btn .arrow {
+    width: 14px; height: 14px;
+    transition: transform 240ms ease;
+  }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* Hero sigil card */
+  .hero-sigil {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 4px;
+    padding: 36px;
+    background: linear-gradient(160deg, rgba(245,239,224,0.06) 0%, rgba(245,239,224,0.01) 100%);
+    border: 1px solid var(--rule-faint);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .hero-sigil::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 35%, rgba(196,149,69,0.16), transparent 55%);
+    pointer-events: none;
+  }
+  .hero-sigil .crest {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+  }
+  .hero-sigil .crest svg {
+    width: 180px;
+    height: auto;
+    color: var(--gold-bright);
+    filter: drop-shadow(0 0 24px rgba(224,183,101,0.25));
+  }
+  .hero-sigil .crest-meta {
+    text-align: center;
+    margin-top: auto;
+  }
+  .hero-sigil .latin-line {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--cream);
+    margin: 0 0 6px;
+    letter-spacing: 0.02em;
+  }
+  .hero-sigil .gloss {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ---------- Section base ---------- */
+  section {
+    padding: 140px 40px;
+    position: relative;
+  }
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .section-head {
+    max-width: 720px;
+    margin: 0 0 72px;
+  }
+  .section-head .eyebrow-rule { margin-bottom: 24px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1;
+    margin: 0 0 24px;
+    letter-spacing: -0.01em;
+  }
+  .section-lede {
+    font-size: 19px;
+    line-height: 1.65;
+    color: rgba(245,239,224,0.72);
+    max-width: 620px;
+  }
+
+  /* ---------- Parchment section (Practice) ---------- */
+  section.practice {
+    background: var(--parchment);
+    color: var(--ink);
+  }
+  section.practice .eyebrow { color: var(--gold-deep); }
+  section.practice .eyebrow-rule::before { background: var(--gold-deep); }
+  section.practice .section-lede { color: var(--ink-soft); }
+  section.practice .section-title { color: var(--ink); }
+  section.practice::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04   0 0 0 0 0.07   0 0 0 0 0.12   0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .discipline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(10,19,34,0.14);
+    border-bottom: 1px solid rgba(10,19,34,0.14);
+  }
+  .discipline {
+    padding: 56px 40px 64px;
+    border-right: 1px solid rgba(10,19,34,0.10);
+    position: relative;
+    transition: background 320ms ease;
+  }
+  .discipline:last-child { border-right: none; }
+  .discipline:hover { background: rgba(196,149,69,0.06); }
+  .discipline .num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gold-deep);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+  .discipline .icon {
+    width: 36px; height: 36px;
+    margin-bottom: 28px;
+    color: var(--gold-deep);
+  }
+  .discipline h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .discipline p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Architecture ---------- */
+  section.architecture {
+    background: var(--navy);
+    overflow: hidden;
+  }
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .arch-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .arch-svg {
+    width: 100%;
+    height: 100%;
+  }
+  .arch-points { margin: 0; padding: 0; list-style: none; }
+  .arch-points li {
+    padding: 28px 0;
+    border-top: 1px solid var(--rule-faint);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .arch-points li:last-child { border-bottom: 1px solid var(--rule-faint); }
+  .arch-points .layer-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  .arch-points .layer-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--cream);
+    margin: 0 0 8px;
+  }
+  .arch-points .layer-body {
+    color: rgba(245,239,224,0.72);
+    font-size: 15.5px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ---------- Field tested ---------- */
+  section.field {
+    background: var(--navy-deep);
+  }
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .field-card {
+    padding: 36px 32px 40px;
+    background: var(--glass);
+    border: 1px solid var(--rule-faint);
+    border-radius: 4px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 320ms ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .field-card:hover {
+    border-color: var(--rule);
+    background: var(--glass-strong);
+    transform: translateY(-2px);
+  }
+  .field-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+    opacity: 0.4;
+  }
+  .field-card .tag {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+    display: block;
+  }
+  .field-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.25;
+    margin: 0 0 16px;
+    color: var(--cream);
+  }
+  .field-card p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(245,239,224,0.7);
+    margin: 0;
+  }
+
+  /* ---------- Posture ---------- */
+  section.posture {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    text-align: center;
+    padding: 160px 40px;
+    position: relative;
+  }
+  section.posture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(196,149,69,0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .posture-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .posture-mark {
+    width: 64px;
+    height: auto;
+    color: var(--gold-bright);
+    margin: 0 auto 40px;
+    display: block;
+    opacity: 0.85;
+  }
+  .posture-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 38px);
+    line-height: 1.35;
+    color: var(--cream);
+    margin: 0 0 36px;
+    letter-spacing: -0.005em;
+  }
+  .posture-body {
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(245,239,224,0.72);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .posture-attribution {
+    margin-top: 40px;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ---------- CTA ---------- */
+  section.cta-final {
+    background: var(--navy-deep);
+    padding: 140px 40px;
+    border-top: 1px solid var(--rule-faint);
+  }
+  .cta-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-inner .section-title { margin-bottom: 22px; }
+  .cta-inner .lede {
+    font-size: 18px;
+    color: rgba(245,239,224,0.72);
+    max-width: 560px;
+    margin: 0 auto 44px;
+    line-height: 1.65;
+  }
+  .cta-row {
+    display: inline-flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 60px 40px 48px;
+    background: var(--navy-deep);
+    border-top: 1px solid var(--rule-faint);
+    color: rgba(245,239,224,0.5);
+    font-size: 13px;
+  }
+  footer .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  footer .foot-brand {
+    display: flex; align-items: center; gap: 12px;
+    color: rgba(245,239,224,0.7);
+  }
+  footer .foot-brand svg { width: 22px; height: 22px; color: var(--gold); }
+  footer .foot-brand span {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+  }
+  footer .foot-meta { font-style: italic; }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 700ms ease, transform 700ms ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .hero-orb { animation: none; }
+    .reveal { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    nav.top { padding: 18px 24px; }
+    section { padding: 100px 24px; }
+    section.hero { padding: 130px 24px 80px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+    .hero-sigil { max-width: 380px; margin: 0 auto; }
+    .arch-grid { grid-template-columns: 1fr; gap: 56px; }
+    .discipline-grid { grid-template-columns: 1fr; }
+    .discipline {
+      border-right: none;
+      border-bottom: 1px solid rgba(10,19,34,0.10);
+    }
+    .discipline:last-child { border-bottom: none; }
+    .field-grid { grid-template-columns: 1fr; }
+    footer .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 16px; }
+    nav.top .brand-word { font-size: 16px; }
+    nav.top .nav-cta { padding: 8px 14px; font-size: 12px; }
+    .btn { padding: 14px 22px; font-size: 13px; }
+    .hero-title { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="top">
+  <a href="#" class="brand" aria-label="Custos Practice home">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2 L28 8 V17 C28 23.5 22.5 28.5 16 30 C9.5 28.5 4 23.5 4 17 V8 Z" stroke="#C49545" stroke-width="1.4" fill="rgba(196,149,69,0.08)"/>
+        <path d="M16 10 V22 M11 16 H21" stroke="#E0B765" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="brand-word"><span class="latin">Custos</span>Practice</span>
+  </a>
+  <a href="#begin" class="nav-cta">Begin the conversation</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-orb" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow eyebrow-rule reveal">An AI Practice</span>
+      <h1 class="hero-title reveal">
+        Sovereign AI, kept inside the walls of the people <span class="accent">who are responsible for it.</span>
+      </h1>
+      <p class="hero-sub reveal">
+        Custos is a small practice that helps schools, parishes, and private institutions design, build, and operate AI inside their own cloud. The work lives in your tenant, on your laptops, under your name.
+      </p>
+      <div class="hero-ctas reveal">
+        <a href="#begin" class="btn btn-primary">
+          Request a consultation
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <a href="#practice" class="btn btn-ghost">How the practice works</a>
+      </div>
+    </div>
+
+    <div class="hero-sigil reveal" aria-hidden="true">
+      <div class="crest">
+        <!-- Guardian sigil: shield with lily (St. Joseph) -->
+        <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 12 L180 42 V120 C180 170 145 210 100 226 C55 210 20 170 20 120 V42 Z"
+                stroke="currentColor" stroke-width="1.4" fill="none" opacity="0.85"/>
+          <path d="M100 28 L168 52 V120 C168 162 138 196 100 210 C62 196 32 162 32 120 V52 Z"
+                stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.5"/>
+          <!-- Lily / fleur-de-lys abstracted -->
+          <path d="M100 70 C100 70 88 92 88 110 C88 124 94 132 100 134 C106 132 112 124 112 110 C112 92 100 70 100 70 Z"
+                fill="currentColor" opacity="0.9"/>
+          <path d="M100 134 C92 130 76 124 70 138 C66 148 72 158 84 158 C92 158 98 152 100 144"
+                stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <path d="M100 134 C108 130 124 124 130 138 C134 148 128 158 116 158 C108 158 102 152 100 144"
+                stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <line x1="80" y1="150" x2="120" y2="150" stroke="currentColor" stroke-width="1.2" opacity="0.7"/>
+          <circle cx="100" cy="50" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="crest-meta">
+        <p class="latin-line">Custos domus.</p>
+        <span class="gloss">Guardian of the household</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRACTICE ============ -->
+<section class="practice" id="practice">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow-rule">The Practice</span>
+      <h2 class="section-title">Three disciplines, <span class="italic serif">one craft.</span></h2>
+      <p class="section-lede">
+        Custos works the way a law firm or an architectural studio works. We sit with leadership, we draw what should be built, and we leave the institution with a craft of its own.
+      </p>
+    </div>
+
+    <div class="discipline-grid">
+      <article class="discipline reveal">
+        <div class="num">I.</div>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        <h3>Consult</h3>
+        <p>We sit with your leadership to map the work that matters, surface the AI that fits, and design what stays in your control. Every engagement starts with listening for a season before a line of code is written.</p>
+      </article>
+
+      <article class="discipline reveal">
+        <div class="num">II.</div>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h3>Build</h3>
+        <p>We deliver agents and tools that live inside your Microsoft 365 tenant, alongside a local Jarvis your people own outright. Everything is configured against your data, your policies, and your people.</p>
+      </article>
+
+      <article class="discipline reveal">
+        <div class="num">III.</div>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+        <h3>Train</h3>
+        <p>We hand off a prompt library and the habits to use it, so the work compounds long after we leave. Your faculty, your staff, and your stewards keep the craft after the consultancy goes home.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARCHITECTURE ============ -->
+<section class="architecture">
+  <div class="container">
+    <div class="arch-grid">
+      <div class="arch-visual reveal" aria-hidden="true">
+        <svg class="arch-svg" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer tenant ring -->
+          <circle cx="240" cy="240" r="220" stroke="rgba(196,149,69,0.35)" stroke-width="1" stroke-dasharray="2 6" fill="none"/>
+          <text x="240" y="38" text-anchor="middle" fill="#C49545" font-family="Inter" font-size="11" letter-spacing="3">YOUR INSTITUTION</text>
+
+          <!-- Microsoft 365 Tenant -->
+          <circle cx="240" cy="240" r="160" stroke="rgba(196,149,69,0.5)" stroke-width="1" fill="rgba(196,149,69,0.04)"/>
+          <text x="240" y="98" text-anchor="middle" fill="#E0B765" font-family="Playfair Display" font-style="italic" font-size="16">Microsoft 365 Tenant</text>
+
+          <!-- Agent nodes around inner ring -->
+          <g fill="#E0B765" opacity="0.85">
+            <circle cx="240" cy="130" r="6"/>
+            <circle cx="316" cy="170" r="6"/>
+            <circle cx="340" cy="240" r="6"/>
+            <circle cx="316" cy="310" r="6"/>
+            <circle cx="240" cy="350" r="6"/>
+            <circle cx="164" cy="310" r="6"/>
+            <circle cx="140" cy="240" r="6"/>
+            <circle cx="164" cy="170" r="6"/>
+          </g>
+          <g stroke="rgba(224,183,101,0.25)" stroke-width="0.8">
+            <line x1="240" y1="240" x2="240" y2="130"/>
+            <line x1="240" y1="240" x2="316" y2="170"/>
+            <line x1="240" y1="240" x2="340" y2="240"/>
+            <line x1="240" y1="240" x2="316" y2="310"/>
+            <line x1="240" y1="240" x2="240" y2="350"/>
+            <line x1="240" y1="240" x2="164" y2="310"/>
+            <line x1="240" y1="240" x2="140" y2="240"/>
+            <line x1="240" y1="240" x2="164" y2="170"/>
+          </g>
+
+          <!-- Center: Jarvis local -->
+          <circle cx="240" cy="240" r="42" fill="#0F1A2E" stroke="#C49545" stroke-width="1.4"/>
+          <text x="240" y="237" text-anchor="middle" fill="#F5EFE0" font-family="Playfair Display" font-style="italic" font-size="15">Jarvis</text>
+          <text x="240" y="254" text-anchor="middle" fill="rgba(245,239,224,0.55)" font-family="Inter" font-size="9" letter-spacing="2">LOCAL</text>
+
+          <!-- Bridge label -->
+          <text x="240" y="448" text-anchor="middle" fill="rgba(245,239,224,0.5)" font-family="Inter" font-size="10" letter-spacing="3">PROMPTS AS THE BRIDGE</text>
+        </svg>
+      </div>
+
+      <div class="arch-copy">
+        <div class="section-head reveal" style="margin-bottom:36px;">
+          <span class="eyebrow eyebrow-rule">Architecture</span>
+          <h2 class="section-title">Two layers. <span class="italic serif">Both yours.</span></h2>
+          <p class="section-lede">
+            Custos builds in two places, and the institution owns every part of both.
+          </p>
+        </div>
+
+        <ul class="arch-points">
+          <li class="reveal">
+            <span class="layer-num">I.</span>
+            <div>
+              <h4 class="layer-title">Agents in your tenant</h4>
+              <p class="layer-body">Copilots, workflows, and assistants live inside the Microsoft 365 tenant your institution already pays for. No new vendor, no shared model, no data sitting on a foreign server.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="layer-num">II.</span>
+            <div>
+              <h4 class="layer-title">Jarvis on the laptop</h4>
+              <p class="layer-body">A local assistant for the people who carry the most weight. It runs on their machine, holds their context, and never asks for a subscription to keep working.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="layer-num">III.</span>
+            <div>
+              <h4 class="layer-title">Prompts as the bridge</h4>
+              <p class="layer-body">The connective tissue is a library of prompts your team can read, edit, and outlast us with. Configurations rot. A craft compounds.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIELD TESTED ============ -->
+<section class="field">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow-rule">In the field</span>
+      <h2 class="section-title">Where the practice <span class="italic serif">has been tested.</span></h2>
+      <p class="section-lede">
+        A small number of engagements, chosen carefully, run end to end. Names withheld out of respect for the institutions.
+      </p>
+    </div>
+
+    <div class="field-grid">
+      <article class="field-card reveal">
+        <span class="tag">Catholic K-8 school</span>
+        <h4>Discovery and pilot package delivered for a leadership team rebuilding its operating posture.</h4>
+        <p>Surfaced four agent use cases, mapped the tenant boundary, and shipped a working pilot inside the school's own Microsoft environment.</p>
+      </article>
+
+      <article class="field-card reveal">
+        <span class="tag">College-preparatory school, grades 5-12</span>
+        <h4>Multi-month superintendent engagement covering philosophy, faculty rhythms, and student-facing tooling.</h4>
+        <p>Built a grades 5-12 plan from the school's own AI philosophy document, with faculty-facing copilots and a staged rollout for the academic year.</p>
+      </article>
+
+      <article class="field-card reveal">
+        <span class="tag">Public school district</span>
+        <h4>Curriculum office, K-12 instructional leadership team.</h4>
+        <p>Live-built a curriculum unit starter with the full curriculum administration team, then handed off the prompts for the office to extend on its own.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POSTURE ============ -->
+<section class="posture">
+  <div class="posture-inner">
+    <svg class="posture-mark reveal" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M32 4 L56 14 V32 C56 46 45 56 32 60 C19 56 8 46 8 32 V14 Z" stroke="currentColor" stroke-width="1.2" fill="rgba(196,149,69,0.08)"/>
+      <path d="M32 20 V44 M22 32 H42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <p class="posture-quote reveal">
+      "<span class="italic">Custos</span> means guardian. The name is borrowed from St. Joseph, the keeper of the household."
+    </p>
+    <p class="posture-body reveal">
+      The work follows from the name. Protect what is sacred to the institutions that built their people, and leave the people stronger than you found them. AI belongs inside the walls of the ones who answer to its outcomes.
+    </p>
+    <div class="posture-attribution reveal">The practice</div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-final" id="begin">
+  <div class="cta-inner">
+    <span class="eyebrow eyebrow-rule reveal" style="display:inline-flex;margin-bottom:24px;">Begin</span>
+    <h2 class="section-title reveal">Tell us about the institution <span class="italic serif">you are responsible for.</span></h2>
+    <p class="lede reveal">
+      We respond within two business days. Initial conversations are unhurried and free of obligation.
+    </p>
+    <div class="cta-row reveal">
+      <a href="mailto:brayantenesaca10@gmail.com?subject=Custos%20Practice%20-%20Initial%20Conversation" class="btn btn-primary">
+        Request a consultation
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <a href="#practice" class="btn btn-ghost">Re-read the practice</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="foot-brand">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M16 2 L28 8 V17 C28 23.5 22.5 28.5 16 30 C9.5 28.5 4 23.5 4 17 V8 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+        <path d="M16 10 V22 M11 16 H21" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span>Custos Practice</span>
+    </div>
+    <div class="foot-meta">A Catholic-founded AI practice. Built quietly.</div>
+    <div><a href="mailto:brayantenesaca10@gmail.com">brayantenesaca10@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Nav background on scroll
+  (function () {
+    var nav = document.querySelector('nav.top');
+    if (!nav) return;
+    function update() {
+      if (window.scrollY > 30) {
+        nav.style.background = 'rgba(10,19,34,0.85)';
+        nav.style.borderBottom = '1px solid rgba(196,149,69,0.10)';
+      } else {
+        nav.style.background = 'linear-gradient(180deg, rgba(10,19,34,0.72) 0%, rgba(10,19,34,0.0) 100%)';
+        nav.style.borderBottom = '1px solid transparent';
+      }
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
